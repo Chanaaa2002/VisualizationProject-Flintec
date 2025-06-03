@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <body style="background: linear-gradient(to bottom right, white 70%, #f8d7da 150%); height: 100vh;">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="row w-75 shadow-lg rounded-4 overflow-hidden"
+                 style="background: white; border: 1px solid #ddd;">
+
+                <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center"
+                     style=" background: white; padding: 40px; text-align: center;">
+                    <div>
+                        <img src="~/Content/Images/logo 1.png" alt="Brand Logo"
+                             style="width: 330px; height: 180px; background: white; border-radius: 15%; padding: 20px;" />
+
+
+                    </div>
+                </div>
+                <div class="col-md-6 p-5" style="background: #404040">
+                    <h3 class="text-center" style="color: #d42a44; font-weight: bold; font-size: 2rem">Login</h3>
+
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger text-center">@ViewBag.ErrorMessage</div>
+                    }
+
+                    <div style="margin-top: 30px;">
+
+                        <div class="form-group d-flex align-items-center mb-3" style="width: 100%;">
+                            <label for="username" class="me-2" style="width: 100px; font-size: 1rem; font-weight: 500; color: white;">Username</label>
+                            <input type="text" name="username" id="username"
+                                   class="form-control"
+                                   style="flex: 1; border-radius: 8px; padding: 10px;"
+                                   placeholder="Enter your username" required />
+                        </div>
+                        <div class="form-group d-flex align-items-center mb-4" style="width: 100%;">
+                            <label for="password" class="me-2" style="width: 100px; font-size: 1rem; font-weight: 500; color: white;">Password</label>
+                            <input type="password" name="password" id="password"
+                                   class="form-control"
+                                   style="flex: 1; border-radius: 8px; padding: 10px;"
+                                   placeholder="Enter your password" required />
+                        </div>
+
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn w-100"
+                                style="background-color: #d42a44; color: white; font-weight: bold; padding: 12px;
+                            border-radius: 8px; transition: 0.3s;">
+                            Login
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+}
