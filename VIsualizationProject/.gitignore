@@ -1,0 +1,13 @@
+# Visual Studio specific files
+.vs/
+*.user
+*.suo
+
+# Build directories
+bin/
+obj/
+
+# Other common ignores
+*.log
+*.tmp
+*.db
