@@ -1,0 +1,727 @@
+﻿@{
+    ViewBag.Title = "Announcements";
+}
+
+<style>
+    /* Top Navigation Bar Styles */
+    .top-navbar {
+        width: 100%;
+        height: 64px;
+        background: #222246;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1050;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        padding: 0 32px;
+    }
+
+        .top-navbar .navbar-brand {
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .top-navbar .navbar-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+            .top-navbar .navbar-links a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.12rem;
+                font-weight: 500;
+                transition: color 0.2s;
+            }
+
+                .top-navbar .navbar-links a:hover,
+                .top-navbar .navbar-links .active {
+                    color: #ffd700;
+                }
+
+    .hamburger-btn {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8fafa;
+        border-radius: 12px;
+        border: 1px solid #e2e4e6;
+        cursor: pointer;
+        margin-right: 18px;
+        box-shadow: 0 0 0 0 transparent;
+        transition: background 0.2s, box-shadow 0.2s;
+    }
+
+        .hamburger-btn:hover {
+            background: #f0f0f0;
+            box-shadow: 0 2px 8px rgba(20,20,20,0.06);
+        }
+
+    .hamburger-icon {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+    }
+
+        .hamburger-icon span {
+            display: block;
+            height: 4px;
+            width: 24px;
+            background: #222246;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+
+    /* Sidebar styles */
+    .sidebar {
+        height: 100vh;
+        width: 260px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #fff;
+        color: #222246;
+        overflow-x: hidden;
+        transition: width 0.3s;
+        z-index: 1000;
+        margin-top: 64px;
+        border-right: 1px solid #e5e5e5;
+        box-shadow: 1px 0 6px rgba(0,0,0,0.03);
+    }
+
+        .sidebar.collapsed {
+            width: 0 !important;
+            min-width: 0 !important;
+            overflow: hidden !important;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        .sidebar .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 18px 8px 22px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: #fff;
+            color: #222246;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+            border-bottom: 1px solid #f4f4f6;
+        }
+
+        .sidebar.collapsed .sidebar-header span {
+            display: none;
+        }
+
+        .sidebar .sidebar-header .sidebar-home-icon {
+            font-size: 1.35rem;
+            color: #222246;
+            margin-right: 3px;
+        }
+        /* Dropdown group styles */
+        .sidebar .dropdown-group {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .sidebar .dropdown {
+            background: #fff;
+            border-radius: 10px;
+            margin: 0 0 2px 0;
+            padding: 0;
+        }
+
+        .sidebar .dropdown-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px 14px 18px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 1.11rem;
+            font-weight: 500;
+            color: #222246;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            transition: background 0.15s, border 0.15s, color 0.15s;
+            background: #fff;
+        }
+
+            .sidebar .dropdown-header .dropdown-icon-svg {
+                width: 26px;
+                height: 26px;
+                margin-right: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar .dropdown-header .dropdown-header-text {
+                flex: 1;
+            }
+
+            .sidebar .dropdown-header .arrow {
+                font-size: 1.3rem;
+                color: #222246;
+                transition: transform 0.2s;
+            }
+
+        .sidebar .dropdown.open .dropdown-header {
+            background: #222246;
+            color: #fff;
+            border: 1px solid #222246;
+        }
+
+            .sidebar .dropdown.open .dropdown-header .arrow {
+                color: #fff;
+            }
+
+            .sidebar .dropdown.open .dropdown-header .dropdown-icon-svg svg rect,
+            .sidebar .dropdown.open .dropdown-header .dropdown-icon-svg svg line,
+            .sidebar .dropdown.open .dropdown-header .dropdown-icon-svg svg circle {
+                stroke: #fff !important;
+                fill: #fff !important;
+            }
+
+            .sidebar .dropdown.open .dropdown-header .dropdown-header-text {
+                color: #fff;
+            }
+
+            .sidebar .dropdown.open .dropdown-header .arrow {
+                transform: rotate(-180deg);
+            }
+        /* Submenu (dropdown-list) FULL WIDTH */
+        .sidebar .dropdown-list {
+            background: #e8edf2;
+            border-radius: 0 0 10px 10px;
+            padding: 12px 0 8px 0;
+            display: none;
+            flex-direction: column;
+            gap: 3px;
+            /* Make width 100% and align left with parent dropdown */
+            width: 100%;
+            min-width: 0;
+            margin-left: 0;
+            box-sizing: border-box;
+        }
+
+        .sidebar .dropdown.open .dropdown-list {
+            display: flex;
+        }
+
+        .sidebar .dropdown-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 28px;
+            color: #222246;
+            text-decoration: none;
+            font-size: 1.04rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background 0.17s;
+            width: 100%;
+            box-sizing: border-box;
+            word-break: break-word;
+            white-space: normal;
+        }
+
+            .sidebar .dropdown-list a:hover {
+                background: #d3dbe7;
+            }
+
+        .sidebar.collapsed .dropdown-header span,
+        .sidebar.collapsed .dropdown-header .dropdown-header-text {
+            display: none;
+        }
+
+        .sidebar.collapsed .dropdown-list {
+            display: none !important;
+        }
+
+        .sidebar.collapsed .dropdown-header .dropdown-icon-svg,
+        .sidebar.collapsed .dropdown-header .arrow {
+            margin: 0;
+        }
+
+    .main-content {
+        margin-top: 80px;
+        margin-left: 260px;
+        padding: 32px;
+        transition: margin-left 0.3s, margin-top 0.3s;
+    }
+
+    .sidebar.collapsed ~ .main-content {
+        margin-left: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+    }
+
+    media (max-width: 800px) {
+        .main-content, .sidebar.collapsed ~ .main-content
+
+    {
+        margin-left: 0;
+    }
+
+    .top-navbar {
+        padding: 0 12px;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    }
+
+    body {
+        background: #f2f4f6;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .container-announcements {
+        margin: 40px auto 0 auto;
+        max-width: 1200px;
+        padding: 0 20px;
+    }
+
+    .announcements-header {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 32px 38px 28px 38px;
+        margin-bottom: 18px;
+    }
+
+    .header-titles h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #222246;
+        margin: 0 0 10px 0;
+    }
+
+    .header-titles .breadcrumb {
+        font-size: 1.02rem;
+        color: #616176;
+        font-weight: 500;
+    }
+
+        .header-titles .breadcrumb a {
+            color: #2f38e6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.13s;
+        }
+
+            .header-titles .breadcrumb a:hover {
+                color: #1a2163;
+                text-decoration: underline;
+            }
+
+    .add-announcement-btn {
+        background: #000;
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        padding: 14px 32px;
+        font-size: 1.13rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.18s, color 0.18s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+        .add-announcement-btn:hover {
+            background: #333;
+        }
+
+    .announcements-main {
+        background: #f5f6f8;
+        border-radius: 15px;
+        padding: 28px 14px 38px 14px;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    }
+
+        .announcements-main h2 {
+            text-align: center;
+            color: #262654;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 28px;
+        }
+
+    .announcements-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto 36px auto;
+        font-size: 1.12rem;
+        background: #fff;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    }
+
+        .announcements-table thead tr {
+            background: #ffa600;
+            color: #fff;
+        }
+
+        .announcements-table th, .announcements-table td {
+            padding: 18px 22px;
+            text-align: left;
+        }
+
+        .announcements-table th {
+            font-weight: 700;
+            font-size: 1.11rem;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #fff2d6;
+        }
+
+        .announcements-table tbody tr:nth-child(even) {
+            background: #f4f6fa;
+        }
+
+        .announcements-table tbody tr:nth-child(odd) {
+            background: #fdfcff;
+        }
+
+        .announcements-table td {
+            font-weight: 500;
+            color: #2a2a3a;
+            border-bottom: 1px solid #e7e7ef;
+        }
+
+            .announcements-table td:last-child,
+            .announcements-table th:last-child {
+                text-align: center;
+            }
+
+    .switch-on {
+        color: #1561e7;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .switch-off {
+        color: #e01b1b;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    media (max-width: 700px) {
+        .announcements-header
+
+    {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 10px;
+    }
+
+    .announcements-main {
+        padding: 16px 2px 24px 2px;
+    }
+
+    .announcements-table th, .announcements-table td {
+        padding: 10px 6px;
+        font-size: 1rem;
+    }
+    }
+</style>
+
+<!-- Top Navigation Bar -->
+<div class="top-navbar">
+    <button class="hamburger-btn" id="hamburgerMenu" title="Toggle Sidebar" aria-label="Toggle Sidebar">
+        <div class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </button>
+    <a href="#" class="navbar-brand">Production  Visualization</a>
+    <div class="navbar-links">
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+    </div>
+</div>
+
+<!-- Sidebar with Multiple Dropdowns & SVG Square Icons -->
+<div class="sidebar" id="mySidebar">
+    <div class="sidebar-header">
+        <span class="sidebar-home-icon">&#8962;</span>
+        <span>KGG</span>
+    </div>
+    <ul class="dropdown-group">
+        <li>
+            <div class="dropdown" id="dropdownRS1">
+                <div class="dropdown-header">
+                    <span class="dropdown-icon-svg">
+                        <svg width="22" height="22" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="8" width="24" height="16" rx="3" fill="none" stroke="#222246" stroke-width="2" />
+                            <line x1="13" y1="19" x2="19" y2="13" stroke="#222246" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="20.3" cy="11.7" r="1.1" fill="#222246" />
+                        </svg>
+                    </span>
+                    <span class="dropdown-header-text">RS 1</span>
+                    <span class="arrow">&#8964;</span>
+                </div>
+                <div class="dropdown-list">
+                    <a href="#"><span>&#8211;</span> All Charts</a>
+                    <a href="#"><span>&#8211;</span> OutPut</a>
+                    <a href="#"><span>&#8211;</span> NRFT</a>
+                    <a href="#"><span>&#8211;</span> Birthday</a>
+                    <a href="#"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="#"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="#"><span>&#8211;</span> Kaizen Plan</a>
+                    <a href="#"><span>&#8211;</span> Monthly PP</a>
+                    <a href="#"><span>&#8211;</span> Announcements</a>
+                    <a href="#"><span>&#8211;</span> Rework Cost</a>
+                    <a href="#"><span>&#8211;</span> Safety Summery</a>
+                    <a href="#"><span>&#8211;</span> Machine Breakdown</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="dropdown" id="dropdownRS2">
+                <div class="dropdown-header">
+                    <span class="dropdown-icon-svg">
+                        <svg width="22" height="22" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="8" width="24" height="16" rx="3" fill="none" stroke="#222246" stroke-width="2" />
+                            <line x1="13" y1="19" x2="19" y2="13" stroke="#222246" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="20.3" cy="11.7" r="1.1" fill="#222246" />
+                        </svg>
+                    </span>
+                    <span class="dropdown-header-text">RS 2</span>
+                    <span class="arrow">&#8964;</span>
+                </div>
+                <div class="dropdown-list">
+                    <a href="#"><span>&#8211;</span> All Charts</a>
+                    <a href="#"><span>&#8211;</span> OutPut</a>
+                    <a href="#"><span>&#8211;</span> NRFT</a>
+                    <a href="#"><span>&#8211;</span> Birthday</a>
+                    <a href="#"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="#"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="#"><span>&#8211;</span> Kaizen Plan</a>
+                    <a href="#"><span>&#8211;</span> Monthly PP</a>
+                    <a href="#"><span>&#8211;</span> Announcements</a>
+                    <a href="#"><span>&#8211;</span> Rework Cost</a>
+                    <a href="#"><span>&#8211;</span> Safety Summery</a>
+                    <a href="#"><span>&#8211;</span> Machine Breakdown</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="dropdown" id="dropdownSP">
+                <div class="dropdown-header">
+                    <span class="dropdown-icon-svg">
+                        <svg width="22" height="22" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="8" width="24" height="16" rx="3" fill="none" stroke="#222246" stroke-width="2" />
+                            <line x1="13" y1="19" x2="19" y2="13" stroke="#222246" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="20.3" cy="11.7" r="1.1" fill="#222246" />
+                        </svg>
+                    </span>
+                    <span class="dropdown-header-text">SP</span>
+                    <span class="arrow">&#8964;</span>
+                </div>
+                <div class="dropdown-list">
+                    <a href="#"><span>&#8211;</span> All Charts</a>
+                    <a href="#"><span>&#8211;</span> OutPut</a>
+                    <a href="#"><span>&#8211;</span> NRFT</a>
+                    <a href="#"><span>&#8211;</span> Birthday</a>
+                    <a href="#"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="#"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="#"><span>&#8211;</span> Kaizen Plan</a>
+                    <a href="#"><span>&#8211;</span> Monthly PP</a>
+                    <a href="#"><span>&#8211;</span> Announcements</a>
+                    <a href="#"><span>&#8211;</span> Rework Cost</a>
+                    <a href="#"><span>&#8211;</span> Safety Summery</a>
+                    <a href="#"><span>&#8211;</span> Machine Breakdown</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="dropdown" id="dropdownPB">
+                <div class="dropdown-header">
+                    <span class="dropdown-icon-svg">
+                        <svg width="22" height="22" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="8" width="24" height="16" rx="3" fill="none" stroke="#222246" stroke-width="2" />
+                            <line x1="13" y1="19" x2="19" y2="13" stroke="#222246" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="20.3" cy="11.7" r="1.1" fill="#222246" />
+                        </svg>
+                    </span>
+                    <span class="dropdown-header-text">PB/PBW</span>
+                    <span class="arrow">&#8964;</span>
+                </div>
+                <div class="dropdown-list">
+                    <a href="#"><span>&#8211;</span> All Charts</a>
+                    <a href="#"><span>&#8211;</span> OutPut</a>
+                    <a href="#"><span>&#8211;</span> NRFT</a>
+                    <a href="#"><span>&#8211;</span> Birthday</a>
+                    <a href="#"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="#"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="#"><span>&#8211;</span> Kaizen Plan</a>
+                    <a href="#"><span>&#8211;</span> Monthly PP</a>
+                    <a href="#"><span>&#8211;</span> Announcements</a>
+                    <a href="#"><span>&#8211;</span> Rework Cost</a>
+                    <a href="#"><span>&#8211;</span> Safety Summery</a>
+                    <a href="#"><span>&#8211;</span> Machine Breakdown</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="dropdown" id="dropdownMD1">
+                <div class="dropdown-header">
+                    <span class="dropdown-icon-svg">
+                        <svg width="22" height="22" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="8" width="24" height="16" rx="3" fill="none" stroke="#222246" stroke-width="2" />
+                            <line x1="13" y1="19" x2="19" y2="13" stroke="#222246" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="20.3" cy="11.7" r="1.1" fill="#222246" />
+                        </svg>
+                    </span>
+                    <span class="dropdown-header-text">MD 1</span>
+                    <span class="arrow">&#8964;</span>
+                </div>
+                <div class="dropdown-list">
+                    <a href="#"><span>&#8211;</span> All Charts</a>
+                    <a href="#"><span>&#8211;</span> OutPut</a>
+                    <a href="#"><span>&#8211;</span> NRFT</a>
+                    <a href="#"><span>&#8211;</span> Birthday</a>
+                    <a href="#"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="#"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="#"><span>&#8211;</span> Kaizen Plan</a>
+                    <a href="#"><span>&#8211;</span> Monthly PP</a>
+                    <a href="#"><span>&#8211;</span> Announcements</a>
+                    <a href="#"><span>&#8211;</span> Rework Cost</a>
+                    <a href="#"><span>&#8211;</span> Safety Summery</a>
+                    <a href="#"><span>&#8211;</span> Machine Breakdown</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="dropdown" id="dropdownGAGING">
+                <div class="dropdown-header">
+                    <span class="dropdown-icon-svg">
+                        <svg width="22" height="22" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="8" width="24" height="16" rx="3" fill="none" stroke="#222246" stroke-width="2" />
+                            <line x1="13" y1="19" x2="19" y2="13" stroke="#222246" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="20.3" cy="11.7" r="1.1" fill="#222246" />
+                        </svg>
+                    </span>
+                    <span class="dropdown-header-text">GAGING KGG</span>
+                    <span class="arrow">&#8964;</span>
+                </div>
+                <div class="dropdown-list">
+                    <a href="#"><span>&#8211;</span> All Charts</a>
+                    <a href="#"><span>&#8211;</span> OutPut</a>
+                    <a href="#"><span>&#8211;</span> NRFT</a>
+                    <a href="#"><span>&#8211;</span> Birthday</a>
+                    <a href="#"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="#"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="#"><span>&#8211;</span> Kaizen Plan</a>
+                    <a href="#"><span>&#8211;</span> Monthly PP</a>
+                    <a href="#"><span>&#8211;</span> Announcements</a>
+                    <a href="#"><span>&#8211;</span> Rework Cost</a>
+                    <a href="#"><span>&#8211;</span> Safety Summery</a>
+                    <a href="#"><span>&#8211;</span> Machine Breakdown</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="container-announcements">
+    <div class="announcements-header">
+        <div class="header-titles">
+            <h1>Announcements</h1>
+            <div class="breadcrumb">
+                GAGING KOG &gt; <a href="#">Announcements</a>
+            </div>
+        </div>
+        <button class="add-announcement-btn">Add Announcement</button>
+    </div>
+
+    <div class="announcements-main">
+        <h2>Announcements Display Status</h2>
+        <table class="announcements-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Display Status</th>
+                    <th>Switch On</th>
+                    <th>Switch Off</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>other</td>
+                    <td>on</td>
+                    <td><span class="switch-on">On</span></td>
+                    <td><span class="switch-off">Off</span></td>
+                </tr>
+                <tr>
+                    <td>line achievements</td>
+                    <td>on</td>
+                    <td><span class="switch-on">On</span></td>
+                    <td><span class="switch-off">Off</span></td>
+                </tr>
+                <tr>
+                    <td>sustainability</td>
+                    <td>on</td>
+                    <td><span class="switch-on">On</span></td>
+                    <td><span class="switch-off">Off</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- You can add more content (e.g., Year/Month/Day row) below if needed -->
+    </div>
+</div>
+
+<script>
+    const sidebar = document.getElementById('mySidebar');
+    const hamburger = document.getElementById('hamburgerMenu');
+    let collapsed = false;
+
+    function setSidebarCollapsed(collapse) {
+        collapsed = collapse;
+        sidebar.classList.toggle('collapsed', collapsed);
+    }
+
+    hamburger.addEventListener('click', function () {
+        setSidebarCollapsed(!collapsed);
+    });
+
+    // Dropdown logic for all dropdowns
+    document.querySelectorAll('.dropdown').forEach(function (dropdown) {
+        const header = dropdown.querySelector('.dropdown-header');
+        header.addEventListener('click', function () {
+            dropdown.classList.toggle('open');
+        });
+    });
+</script>

@@ -241,6 +241,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -251,6 +252,10 @@
     <Compile Include="Migrations\202506030718594_CreateUser.cs" />
     <Compile Include="Migrations\202506030718594_CreateUser.Designer.cs">
       <DependentUpon>202506030718594_CreateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506261011027_InitialUserVisualFix.cs" />
+    <Compile Include="Migrations\202506261011027_InitialUserVisualFix.Designer.cs">
+      <DependentUpon>202506261011027_InitialUserVisualFix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -312,6 +317,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Acc\Login.cshtml" />
+    <Content Include="Views\SP\Home.cshtml" />
+    <Content Include="Views\SP\Announcements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -349,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202506030718594_CreateUser.resx">
       <DependentUpon>202506030718594_CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506261011027_InitialUserVisualFix.resx">
+      <DependentUpon>202506261011027_InitialUserVisualFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

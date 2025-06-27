@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace SearchApplication.Controllers
 {
     public class AccController : Controller
@@ -32,7 +33,7 @@ namespace SearchApplication.Controllers
                 Session["Username"] = user.Username;
                 Session["UserRole"] = user.Role;
 
-                return RedirectToAction("Search", "Home");
+                return RedirectToAction("Home", "SP");
             }
 
             ViewBag.ErrorMessage = "Invalid username or password";
@@ -42,7 +43,7 @@ namespace SearchApplication.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Login", "Acc");
         }
     }
 }
