@@ -12,6 +12,10 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
+        public ActionResult Safety_Summary()
+        {
+            return View();
+        }
     }
 
 }
