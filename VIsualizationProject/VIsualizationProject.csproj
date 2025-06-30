@@ -242,6 +242,7 @@
     <Compile Include="Controllers\AccController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SPController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -319,6 +320,7 @@
     <Content Include="Views\Acc\Login.cshtml" />
     <Content Include="Views\SP\Home.cshtml" />
     <Content Include="Views\SP\Announcements.cshtml" />
+    <Content Include="Views\Test\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
