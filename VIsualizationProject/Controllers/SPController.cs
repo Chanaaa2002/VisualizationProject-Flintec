@@ -28,6 +28,10 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
+        public ActionResult Birthday()
+        {
+            return View();
+        }
     }
 
 }

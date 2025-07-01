@@ -323,6 +323,7 @@
     <Content Include="Views\SP\Safety_Summary.cshtml" />
     <Content Include="Views\SP\Add_SafetySummary.cshtml" />
     <Content Include="Views\SP\Add_Announcements.cshtml" />
+    <Content Include="Views\SP\Birthday.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
