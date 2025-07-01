@@ -24,6 +24,10 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
+        public ActionResult Add_Announcements()
+        {
+            return View();
+        }
     }
 
 }
