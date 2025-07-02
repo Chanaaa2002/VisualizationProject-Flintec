@@ -32,6 +32,10 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
+        public ActionResult Add_Birthday()
+        {
+            return View();
+        }
     }
 
 }
