@@ -241,6 +241,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OutputController.cs" />
     <Compile Include="Controllers\SPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -325,9 +326,12 @@
     <Content Include="Views\SP\Add_Announcements.cshtml" />
     <Content Include="Views\SP\Birthday.cshtml" />
     <Content Include="Views\SP\Add_Birthday.cshtml" />
+    <Content Include="Views\SM\Home.cshtml" />
+    <Content Include="Views\SP\Output.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Output\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

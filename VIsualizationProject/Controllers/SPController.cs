@@ -36,6 +36,10 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
+        public ActionResult Output()
+        {
+            return View();
+        }
     }
 
 }
