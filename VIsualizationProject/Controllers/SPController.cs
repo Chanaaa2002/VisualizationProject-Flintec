@@ -15,6 +15,30 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
+<<<<<<< HEAD
+=======
+        public ActionResult Announcements()
+        {
+            return View();
+        }
+        public ActionResult Add_Announcements()
+        {
+            return View();
+        }
+        public ActionResult Birthday()
+        {
+            return View();
+        }
+        public ActionResult Add_Birthday()
+        {
+            return View();
+        }
+        public ActionResult Output()
+        {
+            return View();
+        }
+    }
+>>>>>>> a6f2b4c8acb8c84ffe66be1b0d8e5c1bf4c9cf78
 
         // Handles form post (POST)
         [HttpPost]
