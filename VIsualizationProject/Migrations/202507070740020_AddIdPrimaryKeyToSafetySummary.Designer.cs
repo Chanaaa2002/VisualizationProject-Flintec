@@ -7,13 +7,13 @@ namespace VIsualizationProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class initial : IMigrationMetadata
+    public sealed partial class AddIdPrimaryKeyToSafetySummary : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddIdPrimaryKeyToSafetySummary));
         
         string IMigrationMetadata.Id
         {
-            get { return "202506030715327_initial"; }
+            get { return "202507070740020_AddIdPrimaryKeyToSafetySummary"; }
         }
         
         string IMigrationMetadata.Source

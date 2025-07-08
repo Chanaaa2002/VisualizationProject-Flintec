@@ -7,13 +7,13 @@ namespace VIsualizationProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class CreateUser : IMigrationMetadata
+    public sealed partial class InitialCreate1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202506030718594_CreateUser"; }
+            get { return "202507041007392_InitialCreate1"; }
         }
         
         string IMigrationMetadata.Source

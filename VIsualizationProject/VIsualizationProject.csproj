@@ -245,20 +245,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202506030715327_initial.cs" />
-    <Compile Include="Migrations\202506030715327_initial.Designer.cs">
-      <DependentUpon>202506030715327_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202507020541415_InitialCreate.cs" />
+    <Compile Include="Migrations\202507020541415_InitialCreate.Designer.cs">
+      <DependentUpon>202507020541415_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202506030718594_CreateUser.cs" />
-    <Compile Include="Migrations\202506030718594_CreateUser.Designer.cs">
-      <DependentUpon>202506030718594_CreateUser.cs</DependentUpon>
+    <Compile Include="Migrations\202507041007392_InitialCreate1.cs" />
+    <Compile Include="Migrations\202507041007392_InitialCreate1.Designer.cs">
+      <DependentUpon>202507041007392_InitialCreate1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202506261011027_InitialUserVisualFix.cs" />
-    <Compile Include="Migrations\202506261011027_InitialUserVisualFix.Designer.cs">
-      <DependentUpon>202506261011027_InitialUserVisualFix.cs</DependentUpon>
+    <Compile Include="Migrations\202507070702008_MakeDateColumnDateType.cs" />
+    <Compile Include="Migrations\202507070702008_MakeDateColumnDateType.Designer.cs">
+      <DependentUpon>202507070702008_MakeDateColumnDateType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202507070740020_AddIdPrimaryKeyToSafetySummary.cs" />
+    <Compile Include="Migrations\202507070740020_AddIdPrimaryKeyToSafetySummary.Designer.cs">
+      <DependentUpon>202507070740020_AddIdPrimaryKeyToSafetySummary.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Safety_Summary.cs" />
     <Compile Include="Models\UserVisual.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -325,6 +330,7 @@
     <Content Include="Views\SP\Add_Announcements.cshtml" />
     <Content Include="Views\SP\Birthday.cshtml" />
     <Content Include="Views\SP\Add_Birthday.cshtml" />
+    <Content Include="Views\SP\five_s.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -357,14 +363,17 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202506030715327_initial.resx">
-      <DependentUpon>202506030715327_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202507020541415_InitialCreate.resx">
+      <DependentUpon>202507020541415_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202506030718594_CreateUser.resx">
-      <DependentUpon>202506030718594_CreateUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202507041007392_InitialCreate1.resx">
+      <DependentUpon>202507041007392_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202506261011027_InitialUserVisualFix.resx">
-      <DependentUpon>202506261011027_InitialUserVisualFix.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202507070702008_MakeDateColumnDateType.resx">
+      <DependentUpon>202507070702008_MakeDateColumnDateType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202507070740020_AddIdPrimaryKeyToSafetySummary.resx">
+      <DependentUpon>202507070740020_AddIdPrimaryKeyToSafetySummary.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

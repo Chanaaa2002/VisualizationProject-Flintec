@@ -7,13 +7,13 @@ namespace VIsualizationProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class InitialUserVisualFix : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialUserVisualFix));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202506261011027_InitialUserVisualFix"; }
+            get { return "202507020541415_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

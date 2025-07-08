@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+
+namespace VIsualizationProject.Models
+{
+    [Table("Safety_Summary")]
+    public class Safety_Summary
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; } 
+
+        [Column(TypeName = "date")]
+        [Required]
+        public DateTime Date { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Employee_Name { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Injury_status { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Description { get; set; }
+        
+
+       
+    }
+}
+       
