@@ -1,330 +1,352 @@
 ﻿@{
-    ViewBag.Title = "Output";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Output";
+        Layout = "~/Views/Shared/_Layout.cshtml";
 
 
 
-    <style>
-        body {
-            background: #f2f4f6;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-
-        .sidebar {
-            height: calc(100vh - 64px);
-            overflow-y: auto;
-            width: 260px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: #fff;
-            color: #222246;
-            overflow-x: hidden;
-            transition: width 0.3s;
-            z-index: 1000;
-            margin-top: 64px;
-            border-right: 1px solid #e5e5e5;
-            box-shadow: 1px 0 6px rgba(0,0,0,0.03);
-        }
-
-        .dropdown-list {
-            max-height: 600px;
-            overflow-y: auto;
-        }
-
-        .sidebar .sidebar-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 20px 18px 8px 22px;
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            background: #fff;
-            color: #222246;
-            border-bottom: 1px solid #f4f4f6;
-        }
-
-        .sidebar .dropdown-group {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .sidebar .dropdown {
-            margin: 0 0 2px 0;
-        }
-
-        .sidebar .dropdown-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 20px 14px 18px;
-            cursor: pointer;
-            font-size: 1.11rem;
-            font-weight: 500;
-            color: #222246;
-            background: #fff;
-            border-radius: 10px;
-            border: 1px solid transparent;
-            transition: background 0.15s, border 0.15s, color 0.15s;
-        }
-
-            .sidebar .dropdown-header:hover,
-            .sidebar .dropdown.open .dropdown-header {
-                background: #222246;
-                color: #fff;
-                border: 1px solid #222246;
+        <style>
+            body {
+                background: #f2f4f6;
+                margin: 0;
+                padding: 0;
+                font-family: 'Segoe UI', Arial, sans-serif;
             }
 
-        .sidebar .dropdown-list {
-            background: #e8edf2;
-            border-radius: 0 0 10px 10px;
-            padding: 10px 0 6px 0;
-            display: none;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .sidebar .dropdown.open .dropdown-list {
-            display: flex;
-        }
-
-        .sidebar .dropdown-list a {
-            padding: 7px 28px;
-            color: #222246;
-            text-decoration: none;
-            font-size: 1.04rem;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: background 0.17s;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-            .sidebar .dropdown-list a:hover {
-                background: #d3dbe7;
+            .sidebar {
+                height: calc(100vh - 64px);
+                overflow-y: auto;
+                width: 260px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background: #fff;
+                color: #222246;
+                overflow-x: hidden;
+                transition: width 0.3s;
+                z-index: 1000;
+                margin-top: 64px;
+                border-right: 1px solid #e5e5e5;
+                box-shadow: 1px 0 6px rgba(0,0,0,0.03);
             }
 
-        .top-navbar {
-            width: 100%;
-            height: 64px;
-            background: #222246;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1050;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-            padding: 0 32px;
-        }
+            .dropdown-list {
+                max-height: 600px;
+                overflow-y: auto;
+            }
 
-            .top-navbar .navbar-brand {
-                font-size: 1.6rem;
+            .sidebar .sidebar-header {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 20px 18px 8px 22px;
+                font-size: 1.25rem;
                 font-weight: 700;
                 letter-spacing: 1px;
-                color: #fff;
-                text-decoration: none;
+                background: #fff;
+                color: #222246;
+                border-bottom: 1px solid #f4f4f6;
             }
 
-            .top-navbar .navbar-links {
+            .sidebar .dropdown-group {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .sidebar .dropdown {
+                margin: 0 0 2px 0;
+            }
+
+            .sidebar .dropdown-header {
                 display: flex;
-                gap: 32px;
                 align-items: center;
+                justify-content: space-between;
+                padding: 14px 20px 14px 18px;
+                cursor: pointer;
+                font-size: 1.11rem;
+                font-weight: 500;
+                color: #222246;
+                background: #fff;
+                border-radius: 10px;
+                border: 1px solid transparent;
+                transition: background 0.15s, border 0.15s, color 0.15s;
             }
 
-                .top-navbar .navbar-links a {
+                .sidebar .dropdown-header:hover,
+                .sidebar .dropdown.open .dropdown-header {
+                    background: #222246;
                     color: #fff;
-                    text-decoration: none;
-                    font-size: 1.1rem;
-                    font-weight: 500;
-                    transition: color 0.2s;
+                    border: 1px solid #222246;
                 }
 
-                    .top-navbar .navbar-links a:hover {
-                        color: #ffd700;
+            .sidebar .dropdown-list {
+                background: #e8edf2;
+                border-radius: 0 0 10px 10px;
+                padding: 10px 0 6px 0;
+                display: none;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .sidebar .dropdown.open .dropdown-list {
+                display: flex;
+            }
+
+            .sidebar .dropdown-list a {
+                padding: 7px 28px;
+                color: #222246;
+                text-decoration: none;
+                font-size: 1.04rem;
+                border-radius: 4px;
+                font-weight: 500;
+                transition: background 0.17s;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+                .sidebar .dropdown-list a:hover {
+                    background: #d3dbe7;
+                }
+
+            .top-navbar {
+                width: 100%;
+                height: 64px;
+                background: #222246;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1050;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+                padding: 0 32px;
+            }
+
+                .top-navbar .navbar-brand {
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    letter-spacing: 1px;
+                    color: #fff;
+                    text-decoration: none;
+                }
+
+                .top-navbar .navbar-links {
+                    display: flex;
+                    gap: 32px;
+                    align-items: center;
+                }
+
+                    .top-navbar .navbar-links a {
+                        color: #fff;
+                        text-decoration: none;
+                        font-size: 1.1rem;
+                        font-weight: 500;
+                        transition: color 0.2s;
                     }
 
+                        .top-navbar .navbar-links a:hover {
+                            color: #ffd700;
+                        }
 
-        .icon-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            outline: none;
-            padding: 0;
-        }
 
-        .top-navbar .icon-btn {
-            margin-right: 24px;
-            margin-left: 12px;
-        }
+            .icon-btn {
+                background: none;
+                border: none;
+                cursor: pointer;
+                outline: none;
+                padding: 0;
+            }
 
-        .custom-hamburger-icon {
-            width: 48px;
-            height: 48px;
-            background: #f5f6f6;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 1px 6px rgba(0,0,0,0.10);
-        }
+            .top-navbar .icon-btn {
+                margin-right: 24px;
+                margin-left: 12px;
+            }
 
-        .custom-hamburger-icon-inner {
-            width: 32px;
-            height: 32px;
-            background: #f6f7f7;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 0 0 transparent;
-            position: relative;
-        }
+            .custom-hamburger-icon {
+                width: 48px;
+                height: 48px;
+                background: #f5f6f6;
+                border-radius: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 1px 6px rgba(0,0,0,0.10);
+            }
 
-        .custom-hamburger-bar {
-            width: 24px;
-            height: 5px;
-            background: #23224a;
-            border-radius: 3px;
-            margin: 3px 0;
-        }
+            .custom-hamburger-icon-inner {
+                width: 32px;
+                height: 32px;
+                background: #f6f7f7;
+                border-radius: 12px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 0 0 0 transparent;
+                position: relative;
+            }
 
-        media (max-width: 900px) {
-            sidebar
+            .custom-hamburger-bar {
+                width: 24px;
+                height: 5px;
+                background: #23224a;
+                border-radius: 3px;
+                margin: 3px 0;
+            }
 
-        {
-            position: static;
-            width: 100%;
-            height: auto;
-            box-shadow: none;
-            border-right: none;
-            padding-top: 0;
-        }
+            media (max-width: 900px) {
+                sidebar
 
-       
-    </style>
+            {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                border-right: none;
+                padding-top: 0;
+            }
 
-    <div class="top-navbar">
-        <button class="icon-btn" id="sidebarHideBtn" title="Hide Sidebar" aria-label="Hide Sidebar">
-            <div class="custom-hamburger-icon">
-                <div class="custom-hamburger-icon-inner">
-                    <div class="custom-hamburger-bar"></div>
-                    <div class="custom-hamburger-bar"></div>
-                    <div class="custom-hamburger-bar"></div>
+
+        </style>
+
+        <div class="top-navbar">
+            <button class="icon-btn" id="sidebarHideBtn" title="Hide Sidebar" aria-label="Hide Sidebar">
+                <div class="custom-hamburger-icon">
+                    <div class="custom-hamburger-icon-inner">
+                        <div class="custom-hamburger-bar"></div>
+                        <div class="custom-hamburger-bar"></div>
+                        <div class="custom-hamburger-bar"></div>
+                    </div>
                 </div>
+            </button>
+            <a href="#" class="navbar-brand">Production  Visualization</a>
+            <div class="navbar-links">
+                <a href="@Url.Action("Home", "SP")">Home</a>
+                <a href="#">Logout</a>
             </div>
-        </button>
-        <a href="#" class="navbar-brand">Production  Visualization</a>
-        <div class="navbar-links">
-            <a href="@Url.Action("Home", "SP")">Home</a>
-            <a href="#">Logout</a>
         </div>
-    </div>
 
-    <div class="sidebar" id="mainSidebar">
-        <div class="sidebar-header" style="cursor:pointer;" onclick="window.location.href='/SP/Home'">
-            <span class="sidebar-home-icon">&#8962;</span>
-            <span>KGG</span>
+        <div class="sidebar" id="mainSidebar">
+            <div class="sidebar-header" style="cursor:pointer;" onclick="window.location.href='/SP/Home'">
+                <span class="sidebar-home-icon">&#8962;</span>
+                <span>KGG</span>
+            </div>
+            <ul class="dropdown-group">
+                <li>
+                    <div class="dropdown" id="dropdownRS1">
+                        <div class="dropdown-header">
+                            <span class="dropdown-icon-svg">
+                                <svg width="22" height="22" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="4" y="8" width="24" height="16" rx="3" fill="none" stroke="#222246" stroke-width="2" />
+                                    <line x1="13" y1="19" x2="19" y2="13" stroke="#222246" stroke-width="2" stroke-linecap="round" />
+                                    <circle cx="20.3" cy="11.7" r="1.1" fill="#222246" />
+                                </svg>
+                            </span>
+                            <span class="dropdown-header-text">SP</span>
+                            <span class="arrow">&#8964;</span>
+                        </div>
+                        <div class="dropdown-list">
+                            <a href="@Url.Action("", "SP")"><span>&#8211;</span> All Charts</a>
+                            <a href="@Url.Action("Output", "SP")"><span>&#8211;</span> OutPut</a>
+                            <a href="@Url.Action("", "SP")"><span>&#8211;</span> NRFT</a>
+                            <a href="@Url.Action("Birthday", "SP")"><span>&#8211;</span> Birthday</a>
+                            <a href="@Url.Action("", "SP")"><span>&#8211;</span> Delivery Performance</a>
+                            <a href="@Url.Action("", "SP")"><span>&#8211;</span> 5S Achievement</a>
+                            <a href="@Url.Action("", "SP")"><span>&#8211;</span> Kaizen Plan</a>
+                            <a href="@Url.Action("", "SP")"><span>&#8211;</span> Monthly PP</a>
+                            <a href="@Url.Action("announcements", "SP")"><span>&#8211;</span> Announcements</a>
+                            <a href="@Url.Action("", "SP")"><span>&#8211;</span> Rework Cost</a>
+                            <a href="@Url.Action("Safety_Summary", "SP")"><span>&#8211;</span> Safety Summary</a>
+                            <a href="@Url.Action("", "SP")"><span>&#8211;</span> Machine Breakdown</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <ul class="dropdown-group">
-            <li>
-                <div class="dropdown" id="dropdownRS1">
-                    <div class="dropdown-header">
-                        <span class="dropdown-icon-svg">
-                            <svg width="22" height="22" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="4" y="8" width="24" height="16" rx="3" fill="none" stroke="#222246" stroke-width="2" />
-                                <line x1="13" y1="19" x2="19" y2="13" stroke="#222246" stroke-width="2" stroke-linecap="round" />
-                                <circle cx="20.3" cy="11.7" r="1.1" fill="#222246" />
-                            </svg>
-                        </span>
-                        <span class="dropdown-header-text">SP</span>
-                        <span class="arrow">&#8964;</span>
-                    </div>
-                    <div class="dropdown-list">
-                        <a href="@Url.Action("", "SP")"><span>&#8211;</span> All Charts</a>
-                        <a href="@Url.Action("Output", "SP")"><span>&#8211;</span> OutPut</a>
-                        <a href="@Url.Action("", "SP")"><span>&#8211;</span> NRFT</a>
-                        <a href="@Url.Action("Birthday", "SP")"><span>&#8211;</span> Birthday</a>
-                        <a href="@Url.Action("", "SP")"><span>&#8211;</span> Delivery Performance</a>
-                        <a href="@Url.Action("", "SP")"><span>&#8211;</span> 5S Achievement</a>
-                        <a href="@Url.Action("", "SP")"><span>&#8211;</span> Kaizen Plan</a>
-                        <a href="@Url.Action("", "SP")"><span>&#8211;</span> Monthly PP</a>
-                        <a href="@Url.Action("announcements", "SP")"><span>&#8211;</span> Announcements</a>
-                        <a href="@Url.Action("", "SP")"><span>&#8211;</span> Rework Cost</a>
-                        <a href="@Url.Action("Safety_Summary", "SP")"><span>&#8211;</span> Safety Summary</a>
-                        <a href="@Url.Action("", "SP")"><span>&#8211;</span> Machine Breakdown</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
 
-    var dummyData = new List<dynamic> {
-        new { O = "WEEK PLAN", Date = (string)null, G = (int?)null, W = (int?)null, FW = (int?)null, MF = (int?)null, OC = (int?)null, EW = (int?)null, WB = (int?)null, TCO = (int?)null, TC = (int?)null, MPT = (string)null, Cabling = (string)null, Potting = (string)null, Packing = (string)null, Rework = (string)null },
+        var dummyData = new List<dynamic> {
+            new { O = "WEEK PLAN", Date = (string)null, G = (int?)null, W = (int?)null, FW = (int?)null, MF = (int?)null, OC = (int?)null, EW = (int?)null, WB = (int?)null, TCO = (int?)null, TC = (int?)null, MPT = (string)null, Cabling = (string)null, Potting = (string)null, Packing = (string)null, Rework = (string)null },
 
-        new { O = "MON", Date = "June 27", G = 233, W = 204, FW = 64, MF = 155, OC = 175, EW = 71, WB = 210, TCO = 226, TC = 489, MPT = "181", Cabling = "238/8", Potting = "123/67", Packing = "152", Rework = "" },
-        new { O = "TUE", Date = "June 28", G = 280, W = 211, FW = 67, MF = 242, OC = 153, EW = 96, WB = 225, TCO = 230, TC = 598, MPT = "231", Cabling = "195/33", Potting = "137/241", Packing = "203", Rework = "" },
-        new { O = "WED", Date = "June 30", G = 260, W = 287, FW = 90, MF = 240, OC = 166, EW = 117, WB = 210, TCO = 231, TC = 435, MPT = "203/06", Cabling = "158/50", Potting = "85/194", Packing = "100", Rework = "" },
-        new { O = "THU", Date = "July 01", G = 267, W = 290, FW = 87, MF = 221, OC = 220, EW = 52, WB = 160, TCO = 232, TC = 636, MPT = "211/18", Cabling = "94/70", Potting = "86/86", Packing = "362", Rework = "" },
-        new { O = "FRI", Date = "July 02", G = 320, W = 293, FW = 73, MF = 318, OC = 229, EW = 79, WB = 242, TCO = 275, TC = 567, MPT = "210/04", Cabling = "147/87", Potting = "141/108", Packing = "240", Rework = "" },
-        new { O = "SAT", Date = "July 02", G = 320, W = 293, FW = 73, MF = 318, OC = 229, EW = 79, WB = 242, TCO = 275, TC = 567, MPT = "210/04", Cabling = "147/87", Potting = "141/108", Packing = "240", Rework = "" }
-    };
-}
+            new { O = "MON", Date = "June 27", G = 233, W = 204, FW = 64, MF = 155, OC = 175, EW = 71, WB = 210, TCO = 226, TC = 489, MPT = "181", Cabling = "238/8", Potting = "123/67", Packing = "152", Rework = "" },
+            new { O = "TUE", Date = "June 28", G = 280, W = 211, FW = 67, MF = 242, OC = 153, EW = 96, WB = 225, TCO = 230, TC = 598, MPT = "231", Cabling = "195/33", Potting = "137/241", Packing = "203", Rework = "" },
+            new { O = "WED", Date = "June 30", G = 260, W = 287, FW = 90, MF = 240, OC = 166, EW = 117, WB = 210, TCO = 231, TC = 435, MPT = "203/06", Cabling = "158/50", Potting = "85/194", Packing = "100", Rework = "" },
+            new { O = "THU", Date = "July 01", G = 267, W = 290, FW = 87, MF = 221, OC = 220, EW = 52, WB = 160, TCO = 232, TC = 636, MPT = "211/18", Cabling = "94/70", Potting = "86/86", Packing = "362", Rework = "" },
+            new { O = "FRI", Date = "July 02", G = 320, W = 293, FW = 73, MF = 318, OC = 229, EW = 79, WB = 242, TCO = 275, TC = 567, MPT = "210/04", Cabling = "147/87", Potting = "141/108", Packing = "240", Rework = "" },
+            new { O = "SAT", Date = "July 02", G = 320, W = 293, FW = 73, MF = 318, OC = 229, EW = 79, WB = 242, TCO = 275, TC = 567, MPT = "210/04", Cabling = "147/87", Potting = "141/108", Packing = "240", Rework = "" }
+        };
+    }
 
-<h2 class="text-center">📊 Weekly Output Dashboard (Demo)</h2>
+    <h2 class="text-center">📊 Weekly Output Dashboard (Demo)</h2>
 
-<table class="table table-striped table-bordered text-center mt-4">
-    <thead class="thead-dark">
-        <tr>
-            <th>Output</th>
-            <th>Date</th>
-            <th>Gaging</th>
-            <th>Wiring</th>
-            <th>F/Weld</th>
-            <th>MF</th>
-            <th>OCLSA</th>
-            <th>E/Weld</th>
-            <th>W/Base</th>
-            <th>TCO</th>
-            <th>TCO Correction</th>
-            <th>M.P.T</th>
-            <th>Cabling</th>
-            <th>Potting</th>
-            <th>Packing</th>
-            <th>Rework</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in dummyData)
-        {
+    <table class="table table-striped table-bordered text-center mt-4">
+        <thead class="thead-dark">
             <tr>
-                <td>@item.O </td>
-                <td>@item.Date</td>
-                <td>@item.G</td>
-                <td>@item.W</td>
-                <td>@item.FW</td>
-                <td>@item.MF</td>
-                <td>@item.OC</td>
-                <td>@item.EW</td>
-                <td>@item.WB</td>
-                <td>@item.TCO</td>
-                <td>@item.TC</td>
-                <td>@item.MPT</td>
-                <td>@item.Cabling</td>
-                <td>@item.Potting</td>
-                <td>@item.Packing</td>
-                <td>@item.Rework</td>
+                <th>Output</th>
+                <th>Date</th>
+                <th>Gaging</th>
+                <th>Wiring</th>
+                <th>F/Weld</th>
+                <th>MF</th>
+                <th>OCLSA</th>
+                <th>E/Weld</th>
+                <th>W/Base</th>
+                <th>TCO</th>
+                <th>TCO Correction</th>
+                <th>M.P.T</th>
+                <th>Cabling</th>
+                <th>Potting</th>
+                <th>Packing</th>
+                <th>Rework</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in dummyData)
+            {
+                <tr>
+                    <td>@item.O </td>
+                    <td>@item.Date</td>
+                    <td>@item.G</td>
+                    <td>@item.W</td>
+                    <td>@item.FW</td>
+                    <td>@item.MF</td>
+                    <td>@item.OC</td>
+                    <td>@item.EW</td>
+                    <td>@item.WB</td>
+                    <td>@item.TCO</td>
+                    <td>@item.TC</td>
+                    <td>@item.MPT</td>
+                    <td>@item.Cabling</td>
+                    <td>@item.Potting</td>
+                    <td>@item.Packing</td>
+                    <td>@item.Rework</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<a href="#" class="btn btn-success">+ Add New Entry (coming soon)</a>
+    <a href="#" class="btn btn-success">+ Add New Entry (coming soon)</a>
+    <script>
+        const sidebar = document.getElementById('mySidebar');
+        const hamburger = document.getElementById('hamburgerMenu');
+        let collapsed = false;
+
+        function setSidebarCollapsed(collapse) {
+            collapsed = collapse;
+            sidebar.classList.toggle('collapsed', collapsed);
+        }
+
+        hamburger.addEventListener('click', function () {
+            setSidebarCollapsed(!collapsed);
+        });
+
+
+        document.querySelectorAll('.dropdown').forEach(function (dropdown) {
+            const header = dropdown.querySelector('.dropdown-header');
+            header.addEventListener('click', function () {
+                dropdown.classList.toggle('open');
+            });
+        });
+    </script>

@@ -15,21 +15,7 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
-<<<<<<< HEAD
-=======
-        public ActionResult Announcements()
-        {
-            return View();
-        }
-        public ActionResult Add_Announcements()
-        {
-            return View();
-        }
-        public ActionResult Birthday()
-        {
-            return View();
-        }
-        public ActionResult Add_Birthday()
+        public ActionResult Home()
         {
             return View();
         }
@@ -37,8 +23,6 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
-    }
->>>>>>> a6f2b4c8acb8c84ffe66be1b0d8e5c1bf4c9cf78
 
         // Handles form post (POST)
         [HttpPost]
@@ -74,7 +58,43 @@ namespace VIsualizationProject.Controllers
             }
             return RedirectToAction("Safety_Summary");
         }
-        
+        [HttpGet]
+        public ActionResult Get_SafetySummary(int id)
+        {
+            var summary = db.Safety.Find(id);
+            if (summary == null)
+                return HttpNotFound();
+
+            return Json(new
+            {
+                Id = summary.Id,
+                Date = summary.Date.ToString("yyyy-MM-dd"),
+                Employee_Name = summary.Employee_Name,
+                Description = summary.Description,
+                Injury_status = summary.Injury_status
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit_SafetySummary(Safety_Summary model)
+        {
+            if (!ModelState.IsValid)
+                return Json(new { success = false, error = "Invalid data" });
+
+            var summary = db.Safety.Find(model.Id);
+            if (summary == null)
+                return Json(new { success = false, error = "Record not found" });
+
+            summary.Date = model.Date;
+            summary.Employee_Name = model.Employee_Name;
+            summary.Description = model.Description;
+            summary.Injury_status = model.Injury_status;
+            db.SaveChanges();
+
+            return Json(new { success = true });
+        }
+
 
 
     }

@@ -331,12 +331,12 @@
     <Content Include="Views\SP\Add_Announcements.cshtml" />
     <Content Include="Views\SP\Birthday.cshtml" />
     <Content Include="Views\SP\Add_Birthday.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\SP\five_s.cshtml" />
-=======
+
     <Content Include="Views\SM\Home.cshtml" />
     <Content Include="Views\SP\Output.cshtml" />
->>>>>>> a6f2b4c8acb8c84ffe66be1b0d8e5c1bf4c9cf78
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

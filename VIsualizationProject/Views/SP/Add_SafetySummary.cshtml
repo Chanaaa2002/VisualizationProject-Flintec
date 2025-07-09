@@ -361,16 +361,16 @@
     }
 
     media (max-width: 1000px) {
-        .main-content-wrapper {
+        .main-content-wrapper 
             margin-left: 0;
         }
         .breadcrumb-card, .form-card {
             max-width: 97vw;
         }
-    }
+    
 
     media (max-width: 800px) {
-        .main-content-wrapper {
+        .main-content-wrapper 
             margin-left: 0 !important;
             padding-top: 64px;
         }
@@ -478,7 +478,7 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Description)
-                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Description)
                 </div>
                 <div class="button-row">

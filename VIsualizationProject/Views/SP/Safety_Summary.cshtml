@@ -491,7 +491,7 @@
                             <td>@item.Description</td>
                             <td>@item.Injury_status</td>
                             <td>
-                                <a href="@Url.Action("Edit_SafetySummary", "SP", new { id = item.Id })" class="edit-link">Edit</a>
+                                <a href="#" class="edit-link" data-id="@item.Id">Edit</a>
                             </td>
                             <td>
                                 @using (Html.BeginForm("Delete_SafetySummary", "SP", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this record?');" }))
@@ -514,19 +514,20 @@
         </table>
     </div>
 </div>
-<!-- Edit Modal -->
+<!-- Edit Modal (unchanged HTML, but ensure form id is "editSafetyForm") -->
 <div class="modal fade" id="editSafetyModal" tabindex="-1" aria-labelledby="editSafetyModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form id="editSafetyForm" autocomplete="off">
+                @Html.AntiForgeryToken()
                 <div class="modal-header">
                     <h5 class="modal-title" id="editSafetyModalLabel">Edit Safety Summary</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border:none;background:transparent;font-size:2rem;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            style="border:none;background:transparent;font-size:2rem;">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    @Html.AntiForgeryToken()
                     <input type="hidden" id="editId" name="Id" />
                     <div class="form-group">
                         <label for="editDate">Injury Date</label>
@@ -538,7 +539,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editDescription">Description</label>
-                        <textarea class="form-control" id="editDescription" name="Description" required></textarea>
+                        <input type="text" class="form-control" id="editDescription" name="Description" required>
                     </div>
                     <div class="form-group">
                         <label for="editInjuryStatus">Injury Status</label>
@@ -553,6 +554,11 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS for modal (make sure you have Bootstrap's JS loaded) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
     document.querySelectorAll('.dropdown').forEach(function (dropdown) {
         const header = dropdown.querySelector('.dropdown-header');
@@ -579,5 +585,50 @@
         }
         sidebarVisible = !sidebarVisible;
     });
+    // When clicking Edit, fetch data and open modal
+   $(function () {
+    // Open modal and fill data
+    $(document).on('click', '.edit-link', function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.get('@Url.Action("Get_SafetySummary", "SP")', { id: id }, function (data) {
+            if (data) {
+                $('#editId').val(data.Id);
+                $('#editDate').val(data.Date);
+                $('#editEmployeeName').val(data.Employee_Name);
+                $('#editDescription').val(data.Description);
+                $('#editInjuryStatus').val(data.Injury_status);
+                $('#editSafetyModal').modal('show');
+            }
+        });
+    });
+
+    // Submit edit form via AJAX
+    $('#editSafetyForm').submit(function (e) {
+        e.preventDefault();
+        var form = $(this);
+        $.ajax({
+            url: '@Url.Action("Edit_SafetySummary", "SP")',
+            type: 'POST',
+            data: form.serialize(),
+            success: function (res) {
+                if (res.success) {
+                    $('#editSafetyModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert(res.error || 'Update failed');
+                }
+            },
+            error: function () {
+                alert('Update failed');
+            }
+        });
+    });
+
+    // Close modal
+    $('#editSafetyModal .close, #editSafetyModal .btn-secondary').on('click', function () {
+        $('#editSafetyModal').modal('hide');
+    });
+});
 </script>
 
