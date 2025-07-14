@@ -23,6 +23,14 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
+        public ActionResult Birthday()
+        {
+            return View();
+        }
+        public ActionResult Add_Announcements()
+        {
+            return View();
+        }
 
         // Handles form post (POST)
         [HttpPost]
@@ -37,9 +45,7 @@ namespace VIsualizationProject.Controllers
                 return RedirectToAction("Safety_Summary");
             }
             return View(model);
-        }
-
-           
+        } 
         public ActionResult Safety_Summary()
         {
             var list = db.Safety.OrderByDescending(x => x.Date).ToList();
@@ -95,7 +101,27 @@ namespace VIsualizationProject.Controllers
             return Json(new { success = true });
         }
 
+        public ActionResult Announcements()
+        {
+            return View();
+        }
+        [HttpGet]
+       
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add_Announcements(Announcements model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.announcements.Add(model);
+                db.SaveChanges();
+                TempData["Success"] = "Announcement saved!";
+                return RedirectToAction("Announcements");
+            }
+            return View(model);
+        }
+        
 
     }
 }

@@ -262,7 +262,12 @@
     <Compile Include="Migrations\202507070740020_AddIdPrimaryKeyToSafetySummary.Designer.cs">
       <DependentUpon>202507070740020_AddIdPrimaryKeyToSafetySummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202507090910021_Announcements.cs" />
+    <Compile Include="Migrations\202507090910021_Announcements.Designer.cs">
+      <DependentUpon>202507090910021_Announcements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Announcements.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Safety_Summary.cs" />
     <Compile Include="Models\UserVisual.cs" />
@@ -331,12 +336,9 @@
     <Content Include="Views\SP\Add_Announcements.cshtml" />
     <Content Include="Views\SP\Birthday.cshtml" />
     <Content Include="Views\SP\Add_Birthday.cshtml" />
-
     <Content Include="Views\SP\five_s.cshtml" />
-
     <Content Include="Views\SM\Home.cshtml" />
     <Content Include="Views\SP\Output.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -381,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202507070740020_AddIdPrimaryKeyToSafetySummary.resx">
       <DependentUpon>202507070740020_AddIdPrimaryKeyToSafetySummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202507090910021_Announcements.resx">
+      <DependentUpon>202507090910021_Announcements.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

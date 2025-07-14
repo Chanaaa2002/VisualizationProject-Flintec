@@ -514,7 +514,7 @@
         </table>
     </div>
 </div>
-<!-- Edit Modal (unchanged HTML, but ensure form id is "editSafetyForm") -->
+
 <div class="modal fade" id="editSafetyModal" tabindex="-1" aria-labelledby="editSafetyModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -556,7 +556,6 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Bootstrap JS for modal (make sure you have Bootstrap's JS loaded) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
@@ -585,9 +584,8 @@
         }
         sidebarVisible = !sidebarVisible;
     });
-    // When clicking Edit, fetch data and open modal
+    
    $(function () {
-    // Open modal and fill data
     $(document).on('click', '.edit-link', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
@@ -603,7 +601,6 @@
         });
     });
 
-    // Submit edit form via AJAX
     $('#editSafetyForm').submit(function (e) {
         e.preventDefault();
         var form = $(this);
@@ -625,7 +622,6 @@
         });
     });
 
-    // Close modal
     $('#editSafetyModal .close, #editSafetyModal .btn-secondary').on('click', function () {
         $('#editSafetyModal').modal('hide');
     });

@@ -13,6 +13,7 @@ namespace VIsualizationProject.Models
         }
         public DbSet<UserVisual> Users { get; set; }
         public DbSet<Safety_Summary> Safety { get; set; }
+        public DbSet<Announcements> announcements { get; set; }
 
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model VIsualizationProject.Models.Announcements
 @{
     ViewBag.Title = "Add_Announcements";
 }
@@ -474,36 +474,39 @@
         </div>
         <div class="form-card">
             <h2>Add Announcements</h2>
-            <form>
+            @using (Html.BeginForm("Add_Announcements", "SP", FormMethod.Post, new { @class = "announcement-form" }))
+            {
+                @Html.AntiForgeryToken()
                 <div class="form-group">
-                    <label for="date">Date</label>
-                    <input type="date" id="date" name="date" placeholder="dd-MM-yyyy" required />
+                    <label for="Date">Date</label>
+                    @Html.TextBoxFor(m => m.Date, new { @type = "date", @class = "form-control", required = "required" })
                 </div>
                 <div class="form-group">
-                    <label for="announcement">Announcement</label>
-                    <input type="text" id="responsibility-supervisor" class="injury-input" />
+                    <label for="Announcement">Announcement</label>
+                    @Html.TextBoxFor(m => m.Announcement, new { @class = "form-control", required = "required" })
                 </div>
                 <div class="form-group">
-                    <label for="announcement">Announcement type</label>
-                    <select id="element-type" class="injury-select">
-                        <option value="incident">Sustainability</option>
-                        <option value="near_miss">Line achievements</option>
-                        <option value="near_miss">Other</option>
-                    </select>
+                    <label for="Type">Announcement type</label>
+                    @Html.DropDownListFor(m => m.Type, new SelectList(new[]
+                    {
+                        new { Value = "Sustainability", Text = "Sustainability" },
+                        new { Value = "Line achievements", Text = "Line achievements" },
+                        new { Value = "Other", Text = "Other" }
+                    }, "Value", "Text"), "-- Select Type --", new { @class = "form-control", required = "required" })
                 </div>
                 <div class="form-group">
-                    <label for="announcement">Announcement Publisher</label>
-                    <input type="text" id="responsibility-supervisor" class="injury-input" />
+                    <label for="Publisher">Announcement Publisher</label>
+                    @Html.TextBoxFor(m => m.Publisher, new { @class = "form-control", required = "required" })
                 </div>
                 <div class="form-group">
-                    <label for="announcement">Announcement Publisher Post</label>
-                    <input type="text" id="responsibility-supervisor" class="injury-input" />
+                    <label for="Piblisher_Post">Announcement Publisher Post</label>
+                    @Html.TextBoxFor(m => m.Piblisher_Post, new { @class = "form-control", required = "required" })
                 </div>
                 <div class="button-row">
                     <button class="black-btn" type="submit">Create</button>
                     <button class="black-btn" type="button" onclick="window.history.back();">Go Back</button>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>

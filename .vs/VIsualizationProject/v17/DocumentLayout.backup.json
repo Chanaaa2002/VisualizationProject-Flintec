@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Add_SafetySummary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:VIsualizationProject\\Views\\SP\\Add_SafetySummary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Safety_Summary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:VIsualizationProject\\Views\\SP\\Safety_Summary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|c:\\users\\umeshi.s\\desktop\\provisualization\\visualizationproject\\controllers\\spcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\controllers\\spcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Models\\Safety_Summary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:VIsualizationProject\\Models\\Safety_Summary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -25,6 +13,26 @@
     {
       "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Add_Announcements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:VIsualizationProject\\Views\\SP\\Add_Announcements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|c:\\users\\umeshi.s\\desktop\\provisualization\\visualizationproject\\views\\sp\\add_safetysummary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\views\\sp\\add_safetysummary.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\visualizationproject\\controllers\\spcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\controllers\\spcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\visualizationproject\\models\\announcements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\models\\announcements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|c:\\users\\umeshi.s\\desktop\\provisualization\\visualizationproject\\views\\sp\\announcements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\views\\sp\\announcements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|c:\\users\\umeshi.s\\desktop\\provisualization\\visualizationproject\\views\\sp\\output.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\views\\sp\\output.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,81 +42,108 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Safety_Summary.cs",
-              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Models\\Safety_Summary.cs",
-              "RelativeDocumentMoniker": "VIsualizationProject\\Models\\Safety_Summary.cs",
-              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Models\\Safety_Summary.cs",
-              "RelativeToolTip": "VIsualizationProject\\Models\\Safety_Summary.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T10:22:32.228Z",
+              "DocumentIndex": 7,
+              "Title": "Output.cshtml",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Output.cshtml",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Views\\SP\\Output.cshtml",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Output.cshtml",
+              "RelativeToolTip": "VIsualizationProject\\Views\\SP\\Output.cshtml",
+              "ViewState": "AgIAAHICAAAAAAAAAAAAAHoCAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-14T04:35:32.552Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
+              "Title": "Announcements.cshtml",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Announcements.cshtml",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Views\\SP\\Announcements.cshtml",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Announcements.cshtml",
+              "RelativeToolTip": "VIsualizationProject\\Views\\SP\\Announcements.cshtml",
+              "ViewState": "AgIAAJkBAAAAAAAAAAAAAAoCAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-14T03:02:39.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Announcements.cs",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Models\\Announcements.cs",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Models\\Announcements.cs",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Models\\Announcements.cs",
+              "RelativeToolTip": "VIsualizationProject\\Models\\Announcements.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-09T08:56:52.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "SPController.cs",
               "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Controllers\\SPController.cs",
               "RelativeDocumentMoniker": "VIsualizationProject\\Controllers\\SPController.cs",
               "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Controllers\\SPController.cs",
               "RelativeToolTip": "VIsualizationProject\\Controllers\\SPController.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAqwBUAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-08T10:22:32.38Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Add_SafetySummary.cshtml",
               "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Add_SafetySummary.cshtml",
               "RelativeDocumentMoniker": "VIsualizationProject\\Views\\SP\\Add_SafetySummary.cshtml",
               "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Add_SafetySummary.cshtml",
               "RelativeToolTip": "VIsualizationProject\\Views\\SP\\Add_SafetySummary.cshtml",
-              "ViewState": "AgIAAOMBAAAAAAAAAAAAAHQBAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAO8BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-08T10:22:32.382Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Add_Announcements.cshtml",
               "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Add_Announcements.cshtml",
               "RelativeDocumentMoniker": "VIsualizationProject\\Views\\SP\\Add_Announcements.cshtml",
               "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Add_Announcements.cshtml",
               "RelativeToolTip": "VIsualizationProject\\Views\\SP\\Add_Announcements.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMIBAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAABkCAAAAAAAAAAAAADICAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-08T10:22:32.384Z"
+              "WhenOpened": "2025-07-08T10:22:32.384Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Home.cshtml",
               "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Home.cshtml",
               "RelativeDocumentMoniker": "VIsualizationProject\\Views\\SP\\Home.cshtml",
               "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Home.cshtml",
               "RelativeToolTip": "VIsualizationProject\\Views\\SP\\Home.cshtml",
-              "ViewState": "AgIAAO8BAAAAAAAAAAAAAAgCAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAPEBAAAAAAAAAAAYwAgCAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-08T10:22:32.401Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Safety_Summary.cshtml",
               "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Safety_Summary.cshtml",
               "RelativeDocumentMoniker": "VIsualizationProject\\Views\\SP\\Safety_Summary.cshtml",
               "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Safety_Summary.cshtml",
               "RelativeToolTip": "VIsualizationProject\\Views\\SP\\Safety_Summary.cshtml",
-              "ViewState": "AgIAABMCAAAAAAAAAAAAABwCAABIAAAAAAAAAA==",
+              "ViewState": "AgIAACUCAAAAAAAAAAAAAG8CAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-08T10:22:32.377Z",
               "EditorCaption": ""
