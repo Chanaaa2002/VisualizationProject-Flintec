@@ -101,12 +101,13 @@ namespace VIsualizationProject.Controllers
             return Json(new { success = true });
         }
 
+        
         public ActionResult Announcements()
         {
-            return View();
+            var list = db.announcements.OrderByDescending(x => x.Date).ToList();
+            return View(list);
         }
-        [HttpGet]
-       
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -116,12 +117,20 @@ namespace VIsualizationProject.Controllers
             {
                 db.announcements.Add(model);
                 db.SaveChanges();
+                if (Request.IsAjaxRequest())
+                    return Json(new { success = true });
+
                 TempData["Success"] = "Announcement saved!";
                 return RedirectToAction("Announcements");
             }
+            if (Request.IsAjaxRequest())
+                return Json(new { success = false });
             return View(model);
         }
-        
-
+        public ActionResult Partial_AnnouncementsTable()
+        {
+            var list = db.announcements.OrderByDescending(x => x.Date).ToList();
+            return PartialView("_AnnouncementsTable", list);
+        }
     }
 }

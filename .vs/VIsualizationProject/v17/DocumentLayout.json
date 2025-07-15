@@ -1,12 +1,71 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|c:\\users\\umeshi.s\\desktop\\provisualization\\visualizationproject\\views\\sp\\announcements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\views\\sp\\announcements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\visualizationproject\\controllers\\spcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\controllers\\spcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\visualizationproject\\models\\announcements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\models\\announcements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Announcements.cs",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Models\\Announcements.cs",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Models\\Announcements.cs",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Models\\Announcements.cs",
+              "RelativeToolTip": "VIsualizationProject\\Models\\Announcements.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T08:53:48.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SPController.cs",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Controllers\\SPController.cs",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Controllers\\SPController.cs",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Controllers\\SPController.cs",
+              "RelativeToolTip": "VIsualizationProject\\Controllers\\SPController.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAQwHYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T08:43:24.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Announcements.cshtml",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Announcements.cshtml",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Views\\SP\\Announcements.cshtml",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Announcements.cshtml",
+              "RelativeToolTip": "VIsualizationProject\\Views\\SP\\Announcements.cshtml",
+              "ViewState": "AgIAABgCAAAAAAAAAAAAACMCAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-14T08:38:32.928Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
