@@ -1,6 +1,9 @@
-﻿@{
+﻿@model VIsualizationProject.Models.UserVisual
+
+@{
     ViewBag.Title = "Login";
 }
+
 @using (Html.BeginForm("Login", "Acc", FormMethod.Post))
 {
     <body style="background: linear-gradient(to bottom right, white 70%, #f8d7da 150%); height: 100vh;">
@@ -13,35 +16,41 @@
                     <div>
                         <img src="~/Content/Images/logo 1.png" alt="Brand Logo"
                              style="width: 330px; height: 180px; background: white; border-radius: 15%; padding: 20px;" />
-
-
                     </div>
                 </div>
+
                 <div class="col-md-6 p-5" style="background: #404040">
                     <h3 class="text-center" style="color: #d42a44; font-weight: bold; font-size: 2rem">Login</h3>
 
-                    @if (ViewBag.ErrorMessage != null)
+                    @if (TempData["errorMsg"] != null)
                     {
-                        <div class="alert alert-danger text-center">@ViewBag.ErrorMessage</div>
+                        @Html.Raw(TempData["errorMsg"])
                     }
 
                     <div style="margin-top: 30px;">
-
                         <div class="form-group d-flex align-items-center mb-3" style="width: 100%;">
-                            <label for="username" class="me-2" style="width: 100px; font-size: 1rem; font-weight: 500; color: white;">Username</label>
-                            <input type="text" name="username" id="username"
-                                   class="form-control"
-                                   style="flex: 1; border-radius: 8px; padding: 10px;"
-                                   placeholder="Enter your username" required />
+                            <label for="Username" class="me-2" style="width: 100px; font-size: 1rem; font-weight: 500; color: white;">Username</label>
+                            @Html.TextBoxFor(m => m.Username, new
+                            {
+                                @class = "form-control",
+                                placeholder = "Enter your username",
+                                style = "flex: 1; border-radius: 8px; padding: 10px;",
+                                required = "required"
+                            })
                         </div>
+
                         <div class="form-group d-flex align-items-center mb-4" style="width: 100%;">
-                            <label for="password" class="me-2" style="width: 100px; font-size: 1rem; font-weight: 500; color: white;">Password</label>
-                            <input type="password" name="password" id="password"
-                                   class="form-control"
-                                   style="flex: 1; border-radius: 8px; padding: 10px;"
-                                   placeholder="Enter your password" required />
+                            <label for="Password" class="me-2" style="width: 100px; font-size: 1rem; font-weight: 500; color: white;">Password</label>
+                            @Html.PasswordFor(m => m.Password, new
+                            {
+                                @class = "form-control",
+                                placeholder = "Enter your password",
+                                style = "flex: 1; border-radius: 8px; padding: 10px;",
+                                required = "required"
+                            })
                         </div>
                     </div>
+
                     <div class="text-center mt-4">
                         <button type="submit" class="btn w-100"
                                 style="background-color: #d42a44; color: white; font-weight: bold; padding: 12px;
