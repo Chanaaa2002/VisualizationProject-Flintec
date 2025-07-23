@@ -28,10 +28,28 @@ namespace VIsualizationProject.Models
 
         [Required]
         [StringLength(50)]
-        public string Piblisher_Post { get; set; }
-
+        public string Publisher_Post { get; set; }
+          
         [Required]
         [StringLength(50)]
         public string Type { get; set; }
+
+        [Column(TypeName = "date")]
+        [Required]
+        public DateTime Start_Date { get; set; }
+
+        [Column(TypeName = "date")]
+        [Required]
+        public DateTime End_Date { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string IsDisplayed { get; set; }
+
+
+        //[Column(TypeName = "date")]
+        //[Required]
+        //public object StartDate { get; internal set; }
+        //public bool IsDisplayed { get; set; }
     }
 }

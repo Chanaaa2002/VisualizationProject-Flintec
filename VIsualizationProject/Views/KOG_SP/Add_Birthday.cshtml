@@ -1,4 +1,4 @@
-﻿
+﻿@model VIsualizationProject.Models.Birthday1
 @{
     ViewBag.Title = "Add_Birthday";
 }
@@ -27,32 +27,32 @@
         padding: 0 40px;
     }
 
-    .top-navbar .navbar-brand {
-        font-size: 2.0rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        color: #fff;
-        text-decoration: none;
-    }
+        .top-navbar .navbar-brand {
+            font-size: 2.0rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            text-decoration: none;
+        }
 
-    .top-navbar .navbar-links {
-        display: flex;
-        gap: 32px;
-        align-items: center;
-    }
+        .top-navbar .navbar-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
 
-    .top-navbar .navbar-links a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.1rem;
-        font-weight: 500;
-        transition: color 0.2s;
-    }
+            .top-navbar .navbar-links a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.1rem;
+                font-weight: 500;
+                transition: color 0.2s;
+            }
 
-    .top-navbar .navbar-links a:hover,
-    .top-navbar .navbar-links .active {
-        color: #ffd700;
-    }
+                .top-navbar .navbar-links a:hover,
+                .top-navbar .navbar-links .active {
+                    color: #ffd700;
+                }
 
     .hamburger-btn {
         width: 48px;
@@ -79,14 +79,14 @@
         gap: 6px;
     }
 
-    .hamburger-icon span {
-        display: block;
-        height: 4px;
-        width: 24px;
-        background: #222246;
-        border-radius: 2px;
-        transition: all 0.2s;
-    }
+        .hamburger-icon span {
+            display: block;
+            height: 4px;
+            width: 24px;
+            background: #222246;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
 
     .sidebar {
         height: 100vh;
@@ -130,11 +130,11 @@
             cursor: pointer;
         }
 
-        .sidebar .sidebar-header .sidebar-home-icon {
-            font-size: 1.35rem;
-            color: #222246;
-            margin-right: 3px;
-        }
+            .sidebar .sidebar-header .sidebar-home-icon {
+                font-size: 1.35rem;
+                color: #222246;
+                margin-right: 3px;
+            }
 
         .sidebar .dropdown-group {
             margin: 0;
@@ -165,24 +165,24 @@
             background: #fff;
         }
 
-        .sidebar .dropdown-header .dropdown-icon-svg {
-            width: 26px;
-            height: 26px;
-            margin-right: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+            .sidebar .dropdown-header .dropdown-icon-svg {
+                width: 26px;
+                height: 26px;
+                margin-right: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-        .sidebar .dropdown-header .dropdown-header-text {
-            flex: 1;
-        }
+            .sidebar .dropdown-header .dropdown-header-text {
+                flex: 1;
+            }
 
-        .sidebar .dropdown-header .arrow {
-            font-size: 1.3rem;
-            color: #222246;
-            transition: transform 0.2s;
-        }
+            .sidebar .dropdown-header .arrow {
+                font-size: 1.3rem;
+                color: #222246;
+                transition: transform 0.2s;
+            }
 
         .sidebar .dropdown.open .dropdown-header {
             background: #222246;
@@ -190,10 +190,10 @@
             border: 1px solid #222246;
         }
 
-        .sidebar .dropdown.open .dropdown-header .arrow {
-            color: #fff;
-            transform: rotate(-180deg);
-        }
+            .sidebar .dropdown.open .dropdown-header .arrow {
+                color: #fff;
+                transform: rotate(-180deg);
+            }
 
         .sidebar .dropdown-list {
             background: #e8edf2;
@@ -310,7 +310,7 @@
     }
 
         .form-group label {
-            width: 250px;
+            width: 270px;
             font-size: 1.2rem;
             font-weight: 500;
             color: #222246;
@@ -320,8 +320,8 @@
             flex: 1;
             border: none;
             border-radius: 12px;
-            width: 100%;
-            max-width: 100%;
+            width: 80%;
+            max-width: 80%;
             padding: 12px 18px;
             font-size: 1.2rem;
             background: #fff;
@@ -364,9 +364,9 @@
         text-align: center;
     }
 
-    .black-btn:hover {
-        background: #1a1a35;
-    }
+        .black-btn:hover {
+            background: #1a1a35;
+        }
 
     media (max-width: 1000px) {
         .main-content-wrapper
@@ -377,6 +377,8 @@
 
     .breadcrumb-card, .form-card {
         max-width: 97vw;
+    }
+
     }
 
     media (max-width: 800px) {
@@ -405,7 +407,6 @@
     .sidebar {
         display: none !important;
     }
-   
 </style>
 
 <div class="top-navbar">
@@ -472,31 +473,36 @@
         </div>
         <div class="form-card">
             <h2>Add Birthday</h2>
-            <form>
+            @using (Html.BeginForm("Add_Birthday", "SP", FormMethod.Post, new { @class = "birthday-form" }))
+            {
+                @Html.AntiForgeryToken()
                 <div class="form-group">
-                    <label for="date">Birthday Date</label>
-                    <input type="date" id="date" name="date" placeholder="dd-MM-yyyy" required />
+                    <label for="Date">Birthday Date</label>
+                    @Html.TextBoxFor(m => m.Date, new { @type = "date", required = "required", @class = "form-control" })
                 </div>
                 <div class="form-group">
-                    <label for="announcement">Employee Name</label>
-                    <input type="text" id="responsibility-supervisor" class="injury-input" />
+                    <label for="Employee_Number">Employee Number</label>
+                    @Html.TextBoxFor(m => m.Employee_Number, new { required = "required", @class = "form-control" })
                 </div>
                 <div class="form-group">
-                    <label for="announcement">Name</label>
-                    <input type="text" id="responsibility-supervisor" class="injury-input" />
+                    <label for="Employee_Name">Name</label>
+                    @Html.TextBoxFor(m => m.Employee_Name, new { required = "required", @class = "form-control" })
                 </div>
                 <div class="form-group">
-                    <label for="announcement">Position</label>
-                    <input type="text" id="responsibility-supervisor" class="injury-input" />
+                    <label for="Position">Position</label>
+                    @Html.TextBoxFor(m => m.Position, new { required = "required", @class = "form-control" })
                 </div>
                 <div class="button-row">
                     <button class="black-btn" type="submit">Create</button>
                     <button class="black-btn" type="button" onclick="window.history.back();">Go Back</button>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 <script>
     const sidebar = document.getElementById('mySidebar');

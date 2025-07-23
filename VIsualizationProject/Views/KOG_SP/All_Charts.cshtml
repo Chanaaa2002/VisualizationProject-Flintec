@@ -1,0 +1,239 @@
+﻿@{
+    ViewBag.Title = "All Charts";
+    var safetyDates = ViewBag.SafetyDates as List<string>; // dates with injuries
+    var today = DateTime.Today;
+    int year = today.Year;
+    int month = today.Month;
+    int daysInMonth = DateTime.DaysInMonth(year, month);
+    var monthName = today.ToString("MMMM");
+}
+
+<style>
+    .top-navbar {
+        width: 100%;
+        height: 64px;
+        background: #222246;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1050;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        padding: 0 32px;
+    }
+
+
+        .top-navbar .navbar-brand {
+            flex: 1;
+            text-align: center;
+            font-size: 1.65rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .top-navbar .navbar-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+            .top-navbar .navbar-links a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.1rem;
+                font-weight: 500;
+                transition: color 0.2s;
+            }
+
+                .top-navbar .navbar-links a:hover {
+                    color: #ffd700;
+                }
+
+    .calendar-container {
+        margin: 40px auto;
+        margin-top: 2.5cm;
+        max-width: 480px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+        padding: 36px 28px;
+    }
+
+    .calendar-header {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+        color: #222246;
+        letter-spacing: 1px;
+    }
+
+    .calendar-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+    }
+
+        .calendar-nav button {
+            background: #222246;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 18px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+            .calendar-nav button:hover {
+                background: #1a1a35;
+            }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 7px;
+    }
+
+    .calendar-day, .calendar-cell {
+        height: 40px;
+        width: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 1.05rem;
+    }
+
+    .calendar-day {
+        background: #e8edf2;
+        color: #222246;
+        font-weight: 600;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+
+    .calendar-cell.red {
+        background: #e74c3c;
+        color: #fff;
+    }
+
+    .calendar-cell.green {
+        background: #27ae60;
+        color: #fff;
+    }
+
+    .calendar-cell.today {
+        border: 2px solid #222246;
+        box-shadow: 0 0 8px #22224644;
+    }
+
+    .calendar-cell.empty {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+</style>
+
+<div class="top-navbar">
+    <a href="#" class="navbar-brand">Production  Visualization</a>
+    <div class="navbar-links">
+        <a href="@Url.Action("Home", "SP")">Home</a>
+        <a href="#">Logout</a>
+    </div>
+</div>
+<div class="calendar-container">
+    <div class="calendar-header">Safety Calendar</div>
+    <div class="calendar-nav">
+        <button onclick="changeMonth(-1)">&#8592; Prev</button>
+        <span id="calendarMonthLabel" style="font-weight:700;font-size:1.2rem;">@monthName @year</span>
+        <button onclick="changeMonth(1)">Next &#8594;</button>
+    </div>
+    <div class="calendar-grid" id="calendarGrid">
+        <div class="calendar-day">Sun</div>
+        <div class="calendar-day">Mon</div>
+        <div class="calendar-day">Tue</div>
+        <div class="calendar-day">Wed</div>
+        <div class="calendar-day">Thu</div>
+        <div class="calendar-day">Fri</div>
+        <div class="calendar-day">Sat</div>
+        @{
+            // Initial calendar for current month, will be replaced dynamically by JS below
+            int firstDay = (int)(new DateTime(year, month, 1).DayOfWeek);
+            for (int i = 0; i < firstDay; i++)
+            {
+                <div class="calendar-cell empty"></div>
+            }
+            for (int day = 1; day <= daysInMonth; day++)
+            {
+                var dateStr = new DateTime(year, month, day).ToString("yyyy-MM-dd");
+                var colorClass = safetyDates != null && safetyDates.Contains(dateStr) ? "red" : "green";
+                var isToday = (year == DateTime.Today.Year && month == DateTime.Today.Month && day == DateTime.Today.Day) ? "today" : "";
+                <div class="calendar-cell @colorClass @isToday">@day</div>
+            }
+        }
+    </div>
+</div>
+
+<script>
+    // Pass safetyDates from server to JS
+    var safetyDates = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(safetyDates ?? new List<string>()));
+
+    // Calendar navigation
+    let currentYear = @year;
+    let currentMonth = @month;
+
+    function changeMonth(delta) {
+        currentMonth += delta;
+        if (currentMonth > 12) {
+            currentMonth = 1;
+            currentYear++;
+        }
+        if (currentMonth < 1) {
+            currentMonth = 12;
+            currentYear--;
+        }
+        renderCalendar(currentYear, currentMonth);
+    }
+
+    function renderCalendar(year, month) {
+        let daysInMonth = new Date(year, month, 0).getDate();
+        let firstDay = new Date(year, month-1, 1).getDay();
+        let grid = document.getElementById('calendarGrid');
+        let html = "";
+        // Day headers
+        let days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+        for (let d = 0; d < 7; d++) {
+            html += `<div class="calendar-day">${days[d]}</div>`;
+        }
+        // Empty cells
+        for (let i = 0; i < firstDay; i++) {
+            html += `<div class="calendar-cell empty"></div>`;
+        }
+        // Date cells
+        for (let day = 1; day <= daysInMonth; day++) {
+            let dateObj = new Date(year, month-1, day);
+            let dateStr = year + '-' + String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+            let colorClass = safetyDates.includes(dateStr) ? "red" : "green";
+            let isToday = (year == new Date().getFullYear() && month == (new Date().getMonth()+1) && day == new Date().getDate()) ? "today" : "";
+            html += `<div class="calendar-cell ${colorClass} ${isToday}">${day}</div>`;
+        }
+        grid.innerHTML = html;
+        // Month name update
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        document.getElementById('calendarMonthLabel').innerText = monthNames[month - 1] + " " + year;
+    }
+
+    // Initial render for current month
+    renderCalendar(currentYear, currentMonth);
+</script>

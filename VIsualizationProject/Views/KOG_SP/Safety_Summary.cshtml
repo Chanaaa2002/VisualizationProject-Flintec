@@ -438,7 +438,7 @@
                     <span class="arrow">&#8964;</span>
                 </div>
                 <div class="dropdown-list">
-                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> All Charts</a>
+                    <a href="@Url.Action("All_Charts", "KOG_SP")"><span>&#8211;</span> All Charts</a>
                     <a href="@Url.Action("Output", "KOG_SP")"><span>&#8211;</span> OutPut</a>
                     <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> NRFT</a>
                     <a href="@Url.Action("Birthday", "KOG_SP")"><span>&#8211;</span> Birthday</a>
@@ -477,7 +477,7 @@
                     <th>Description</th>
                     <th>Injury Status</th>
                     <th>Edit</th>
-                    <th>Delete</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -492,14 +492,6 @@
                             <td>@item.Injury_status</td>
                             <td>
                                 <a href="#" class="edit-link" data-id="@item.Id">Edit</a>
-                            </td>
-                            <td>
-                                @using (Html.BeginForm("Delete_SafetySummary", "SP", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this record?');" }))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    @Html.Hidden("id", item.Id)
-                                    <button type="submit" class="delete-link" style="background:none;border:none;color:#e01b1b;cursor:pointer;text-decoration:underline;font-weight:500;">Delete</button>
-                                }
                             </td>
                         </tr>
                     }

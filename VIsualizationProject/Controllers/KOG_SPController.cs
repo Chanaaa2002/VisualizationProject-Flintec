@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using VIsualizationProject.Migrations;
 using VIsualizationProject.Models;
 
 namespace VIsualizationProject.Controllers
@@ -9,7 +10,6 @@ namespace VIsualizationProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // Shows the add form (GET)
         [HttpGet]
         public ActionResult Add_SafetySummary()
         {
@@ -33,12 +33,16 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
+        public ActionResult Add_Birthday()
+        {
+            return View();
+        }
         public ActionResult Add_Announcements()
         {
             return View();
         }
 
-        // Handles form post (POST)
+        // Safety Summary
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add_SafetySummary(Safety_Summary model)
@@ -51,25 +55,14 @@ namespace VIsualizationProject.Controllers
                 return RedirectToAction("Safety_Summary");
             }
             return View(model);
-        } 
+        }
+
         public ActionResult Safety_Summary()
         {
-            var list = db.Safety.OrderByDescending(x => x.Date).ToList();
+            var list = db.Safety.OrderByDescending(x => x.Date).Take(10).ToList();
             return View(list);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete_SafetySummary(int id)
-        {
-            var summary = db.Safety.Find(id);
-            if (summary != null)
-            {
-                db.Safety.Remove(summary);
-                db.SaveChanges();
-                TempData["Success"] = "Safety Summary deleted!";
-            }
-            return RedirectToAction("Safety_Summary");
-        }
+
         [HttpGet]
         public ActionResult Get_SafetySummary(int id)
         {
@@ -106,14 +99,24 @@ namespace VIsualizationProject.Controllers
 
             return Json(new { success = true });
         }
+        public ActionResult All_Charts()
+        {
+            // Get all accident dates from Safety_Summary table
+            var safetyDates = db.Safety.Select(s => s.Date).ToList();
+            ViewBag.SafetyDates = safetyDates.Select(d => d.ToString("yyyy-MM-dd")).ToList();
+            return View();
+        }
 
-        
+
+
+
+        // Announcements
+
         public ActionResult Announcements()
         {
             var list = db.announcements.OrderByDescending(x => x.Date).ToList();
             return View(list);
         }
-        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -123,20 +126,85 @@ namespace VIsualizationProject.Controllers
             {
                 db.announcements.Add(model);
                 db.SaveChanges();
-                if (Request.IsAjaxRequest())
-                    return Json(new { success = true });
-
-                TempData["Success"] = "Announcement saved!";
                 return RedirectToAction("Announcements");
             }
-            if (Request.IsAjaxRequest())
-                return Json(new { success = false });
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            ViewBag.Errors = errors;
             return View(model);
         }
+
         public ActionResult Partial_AnnouncementsTable()
         {
             var list = db.announcements.OrderByDescending(x => x.Date).ToList();
             return PartialView("_AnnouncementsTable", list);
         }
-    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete_Announcement(int id)
+        {
+            var ann = db.announcements.Find(id);
+            if (ann != null)
+            {
+                db.announcements.Remove(ann);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false, error = "Record not found." });
+        }
+        [HttpGet]
+        public ActionResult Get_Announcement(int id)
+        {
+            var ann = db.announcements.Find(id);
+            if (ann == null)
+                return HttpNotFound();
+
+            return Json(new
+            {
+                Id = ann.Id,
+                Date = ann.Date.ToString("yyyy-MM-dd"),
+                Announcement = ann.Announcement,
+                Publisher = ann.Publisher,
+                Piblisher_Post = ann.Publisher_Post,
+                Type = ann.Type
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit_Announcement(Announcements model)
+        {
+            if (!ModelState.IsValid)
+                return Json(new { success = false, error = "Invalid data" });
+
+            var ann = db.announcements.Find(model.Id);
+            if (ann == null)
+                return Json(new { success = false, error = "Record not found" });
+
+            ann.Date = model.Date;
+            ann.Announcement = model.Announcement;
+            ann.Publisher = model.Publisher;
+            ann.Publisher_Post = model.Publisher_Post;
+            ann.Type = model.Type;
+            db.SaveChanges();
+
+            return Json(new { success = true });
+        }
+
+        // POST: SP/Add_Birthday
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add_Birthday(Birthday model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.birthday.Add(model);
+                db.SaveChanges();
+                // redirect to a confirmation or list page
+                return RedirectToAction("Birthday", "KOG_SP");
+            }
+            // if validation failed, redisplay form with errors
+            return View(model);
+
+        }
 }
+    
