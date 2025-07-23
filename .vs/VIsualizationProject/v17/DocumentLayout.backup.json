@@ -1,0 +1,117 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|c:\\users\\umeshi.s\\desktop\\projectnew\\visualizationproject\\views\\kog_sp\\birthday.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\views\\kog_sp\\birthday.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\visualizationproject\\views\\kog_sp\\announcements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\views\\kog_sp\\announcements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\visualizationproject\\controllers\\kog_spcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\controllers\\kog_spcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\visualizationproject\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\visualizationproject\\models\\birthday1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\models\\birthday1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\visualizationproject\\views\\kog_sp\\add_birthday.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\views\\kog_sp\\add_birthday.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Announcements.cshtml",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Views\\KOG_SP\\Announcements.cshtml",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Views\\KOG_SP\\Announcements.cshtml",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Views\\KOG_SP\\Announcements.cshtml",
+              "RelativeToolTip": "VIsualizationProject\\Views\\KOG_SP\\Announcements.cshtml",
+              "ViewState": "AgIAANsBAAAAAAAAAAAAAKMCAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-28T07:30:36.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Birthday.cshtml",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Views\\KOG_SP\\Birthday.cshtml",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Views\\KOG_SP\\Birthday.cshtml",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Views\\KOG_SP\\Birthday.cshtml",
+              "RelativeToolTip": "VIsualizationProject\\Views\\KOG_SP\\Birthday.cshtml",
+              "ViewState": "AgIAAHUBAAAAAAAAAAAAAP0BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-28T07:29:57.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Models\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Models\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Models\\ApplicationDbContext.cs",
+              "RelativeToolTip": "VIsualizationProject\\Models\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T07:27:19.505Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Birthday1.cs",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Models\\Birthday1.cs",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Models\\Birthday1.cs",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Models\\Birthday1.cs",
+              "RelativeToolTip": "VIsualizationProject\\Models\\Birthday1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAiwAkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T07:14:10.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Add_Birthday.cshtml",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Views\\KOG_SP\\Add_Birthday.cshtml",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Views\\KOG_SP\\Add_Birthday.cshtml",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Views\\KOG_SP\\Add_Birthday.cshtml",
+              "RelativeToolTip": "VIsualizationProject\\Views\\KOG_SP\\Add_Birthday.cshtml",
+              "ViewState": "AgIAAAoCAAAAAAAAAAAAwCsCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-28T07:08:25.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "KOG_SPController.cs",
+              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Controllers\\KOG_SPController.cs",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Controllers\\KOG_SPController.cs",
+              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProjectNew\\VIsualizationProject\\Controllers\\KOG_SPController.cs",
+              "RelativeToolTip": "VIsualizationProject\\Controllers\\KOG_SPController.cs",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAAwNgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T08:20:43.795Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
