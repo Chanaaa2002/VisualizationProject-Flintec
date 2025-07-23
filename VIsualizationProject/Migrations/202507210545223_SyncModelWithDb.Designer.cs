@@ -7,13 +7,13 @@ namespace VIsualizationProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class SyncModelWithDb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SyncModelWithDb));
         
         string IMigrationMetadata.Id
         {
-            get { return "202507020541415_InitialCreate"; }
+            get { return "202507210545223_SyncModelWithDb"; }
         }
         
         string IMigrationMetadata.Source

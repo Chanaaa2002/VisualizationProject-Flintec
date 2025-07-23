@@ -5,7 +5,7 @@ using VIsualizationProject.Models;
 
 namespace VIsualizationProject.Controllers
 {
-    public class SPController : Controller
+    public class KOG_SPController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -15,7 +15,7 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
-        public ActionResult Home()
+        public ActionResult Dashboard()
         {
             return View();
         }
@@ -23,6 +23,12 @@ namespace VIsualizationProject.Controllers
         {
             return View();
         }
+
+        public ActionResult MonthlyPP()
+        {
+            return View();
+        }
+
         public ActionResult Birthday()
         {
             return View();

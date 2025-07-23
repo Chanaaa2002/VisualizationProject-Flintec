@@ -241,14 +241,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MonthlyPPController.cs" />
     <Compile Include="Controllers\OutputController.cs" />
-    <Compile Include="Controllers\SPController.cs" />
+    <Compile Include="Controllers\KOG_SPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202507020541415_InitialCreate.cs" />
-    <Compile Include="Migrations\202507020541415_InitialCreate.Designer.cs">
-      <DependentUpon>202507020541415_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202507041007392_InitialCreate1.cs" />
     <Compile Include="Migrations\202507041007392_InitialCreate1.Designer.cs">
@@ -265,6 +262,10 @@
     <Compile Include="Migrations\202507090910021_Announcements.cs" />
     <Compile Include="Migrations\202507090910021_Announcements.Designer.cs">
       <DependentUpon>202507090910021_Announcements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202507210545223_SyncModelWithDb.cs" />
+    <Compile Include="Migrations\202507210545223_SyncModelWithDb.Designer.cs">
+      <DependentUpon>202507210545223_SyncModelWithDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Announcements.cs" />
@@ -328,20 +329,22 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Acc\Login.cshtml" />
-    <Content Include="Views\SP\Home.cshtml" />
-    <Content Include="Views\SP\Announcements.cshtml" />
+    <Content Include="Views\KOG_SP\Dashboard.cshtml" />
+    <Content Include="Views\KOG_SP\Announcements.cshtml" />
     <Content Include="Views\Test\View.cshtml" />
-    <Content Include="Views\SP\Safety_Summary.cshtml" />
-    <Content Include="Views\SP\Add_SafetySummary.cshtml" />
-    <Content Include="Views\SP\Add_Announcements.cshtml" />
-    <Content Include="Views\SP\Birthday.cshtml" />
-    <Content Include="Views\SP\Add_Birthday.cshtml" />
-    <Content Include="Views\SP\five_s.cshtml" />
+    <Content Include="Views\KOG_SP\Safety_Summary.cshtml" />
+    <Content Include="Views\KOG_SP\Add_SafetySummary.cshtml" />
+    <Content Include="Views\KOG_SP\Add_Announcements.cshtml" />
+    <Content Include="Views\KOG_SP\Birthday.cshtml" />
+    <Content Include="Views\KOG_SP\Add_Birthday.cshtml" />
+    <Content Include="Views\KOG_SP\five_s.cshtml" />
     <Content Include="Views\SM\Home.cshtml" />
-    <Content Include="Views\SP\Output.cshtml" />
+    <Content Include="Views\KOG_SP\Output.cshtml" />
+    <Content Include="Views\KOG_SP\MonthlyPP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MonthlyPP\" />
     <Folder Include="Views\Output\" />
   </ItemGroup>
   <ItemGroup>
@@ -372,9 +375,6 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202507020541415_InitialCreate.resx">
-      <DependentUpon>202507020541415_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202507041007392_InitialCreate1.resx">
       <DependentUpon>202507041007392_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
@@ -386,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202507090910021_Announcements.resx">
       <DependentUpon>202507090910021_Announcements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202507210545223_SyncModelWithDb.resx">
+      <DependentUpon>202507210545223_SyncModelWithDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

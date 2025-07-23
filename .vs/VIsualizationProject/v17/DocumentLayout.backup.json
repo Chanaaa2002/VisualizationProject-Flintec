@@ -1,17 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\",
+  "WorkspaceRootPath": "C:\\Users\\dinuka.j\\source\\repos\\VIsualizationProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|c:\\users\\umeshi.s\\desktop\\provisualization\\visualizationproject\\views\\sp\\announcements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\views\\sp\\announcements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|c:\\users\\dinuka.j\\source\\repos\\visualizationproject\\visualizationproject\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\visualizationproject\\controllers\\spcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\controllers\\spcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\visualizationproject\\models\\announcements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|C:\\Users\\dinuka.j\\source\\repos\\VIsualizationProject\\visualizationproject\\models\\announcements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AAC26A05-5F87-4CDF-B4F8-E0B25B139D73}|VIsualizationProject\\VIsualizationProject.csproj|solutionrelative:visualizationproject\\models\\announcements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,45 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Announcements.cs",
-              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Models\\Announcements.cs",
-              "RelativeDocumentMoniker": "VIsualizationProject\\Models\\Announcements.cs",
-              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Models\\Announcements.cs",
-              "RelativeToolTip": "VIsualizationProject\\Models\\Announcements.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T08:53:48.399Z",
+              "DocumentIndex": 0,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\dinuka.j\\source\\repos\\VIsualizationProject\\VIsualizationProject\\Web.config",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Web.config",
+              "ToolTip": "C:\\Users\\dinuka.j\\source\\repos\\VIsualizationProject\\VIsualizationProject\\Web.config",
+              "RelativeToolTip": "VIsualizationProject\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-07-23T09:55:02.793Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SPController.cs",
-              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Controllers\\SPController.cs",
-              "RelativeDocumentMoniker": "VIsualizationProject\\Controllers\\SPController.cs",
-              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Controllers\\SPController.cs",
-              "RelativeToolTip": "VIsualizationProject\\Controllers\\SPController.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAQwHYAAAAhAAAAAAAAAA==",
+              "Title": "Announcements.cs",
+              "DocumentMoniker": "C:\\Users\\dinuka.j\\source\\repos\\VIsualizationProject\\VIsualizationProject\\Models\\Announcements.cs",
+              "RelativeDocumentMoniker": "VIsualizationProject\\Models\\Announcements.cs",
+              "ToolTip": "C:\\Users\\dinuka.j\\source\\repos\\VIsualizationProject\\VIsualizationProject\\Models\\Announcements.cs",
+              "RelativeToolTip": "VIsualizationProject\\Models\\Announcements.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T08:43:24.86Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Announcements.cshtml",
-              "DocumentMoniker": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Announcements.cshtml",
-              "RelativeDocumentMoniker": "VIsualizationProject\\Views\\SP\\Announcements.cshtml",
-              "ToolTip": "C:\\Users\\umeshi.s\\Desktop\\ProVisualization\\VIsualizationProject\\Views\\SP\\Announcements.cshtml",
-              "RelativeToolTip": "VIsualizationProject\\Views\\SP\\Announcements.cshtml",
-              "ViewState": "AgIAABgCAAAAAAAAAAAAACMCAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-14T08:38:32.928Z",
+              "WhenOpened": "2025-07-23T09:54:14.194Z",
               "EditorCaption": ""
             }
           ]

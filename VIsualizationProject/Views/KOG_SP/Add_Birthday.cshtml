@@ -418,13 +418,13 @@
     </button>
     <a href="#" class="navbar-brand">Production Visualization</a>
     <div class="navbar-links">
-        <a href="@Url.Action("Home", "SP")">Home</a>
+        <a href="@Url.Action("Dashboard", "KOG_SP")">Dashboard</a>
         <a href="#">Logout</a>
     </div>
 </div>
 
 <div class="sidebar" id="mySidebar">
-    <div class="sidebar-header" onclick="window.location.href='/SP/Home'">
+    <div class="sidebar-header" onclick="window.location.href='/KOG_SP/Dashboard'">
         <span class="sidebar-home-icon">&#8962;</span>
         <span>KGG</span>
     </div>
@@ -446,14 +446,14 @@
                     <a href="#"><span>&#8211;</span> All Charts</a>
                     <a href="#"><span>&#8211;</span> OutPut</a>
                     <a href="#"><span>&#8211;</span> NRFT</a>
-                    <a href="@Url.Action("Birthday", "SP")"><span>&#8211;</span> Birthday</a>
+                    <a href="@Url.Action("Birthday", "KOG_SP")"><span>&#8211;</span> Birthday</a>
                     <a href="#"><span>&#8211;</span> Delivery Performance</a>
                     <a href="#"><span>&#8211;</span> 5S Achievement</a>
                     <a href="#"><span>&#8211;</span> Kaizen Plan</a>
                     <a href="#"><span>&#8211;</span> Monthly PP</a>
-                    <a href="@Url.Action("Announcements", "SP")"><span>&#8211;</span> Announcements</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> Rework Cost</a>
-                    <a href="@Url.Action("Safety_Summary", "SP")"><span>&#8211;</span> Safety Summary</a>
+                    <a href="@Url.Action("Announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Rework Cost</a>
+                    <a href="@Url.Action("Safety_Summary", "KOG_SP")"><span>&#8211;</span> Safety Summary</a>
                     <a href="#"><span>&#8211;</span> Machine Breakdown</a>
                 </div>
             </div>
@@ -539,11 +539,11 @@
     });
 
     document.getElementById('safetySummaryBtn').addEventListener('click', function () {
-        window.location.href = '/SP/AddSafetySummary';
+        window.location.href = '/KOG_SP/AddSafetySummary';
     });
     document.getElementById('safety-summary-link').addEventListener('click', function (e) {
         e.preventDefault();
-        window.location.href = '/SP/AddSafetySummary';
+        window.location.href = '/KOG_SP/AddSafetySummary';
     });
 </script>
 

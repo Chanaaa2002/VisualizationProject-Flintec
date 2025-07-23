@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "five_s";
+    ViewBag.Title = "Birthday";
 }
 
 <style>
@@ -413,13 +413,13 @@
     </button>
     <a href="#" class="navbar-brand">Production  Visualization</a>
     <div class="navbar-links">
-        <a href="@Url.Action("Home", "SP")">Home</a>
+        <a href="@Url.Action("Dashboard", "KOG_SP")">Dashboard</a>
         <a href="#">Logout</a>
     </div>
 </div>
 
 <div class="sidebar" id="mainSidebar">
-    <div class="sidebar-header" style="cursor:pointer;" onclick="window.location.href='/SP/Home'">
+    <div class="sidebar-header" style="cursor:pointer;" onclick="window.location.href='/KOG_SP/Dashboard'">
         <span class="sidebar-home-icon">&#8962;</span>
         <span>KGG</span>
     </div>
@@ -438,18 +438,18 @@
                     <span class="arrow">&#8964;</span>
                 </div>
                 <div class="dropdown-list">
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> All Charts</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> OutPut</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> NRFT</a>
-                    <a href="@Url.Action("Birthday", "SP")"><span>&#8211;</span> Birthday</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> Delivery Performance</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> 5S Achievement</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> Kaizen Plan</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> Monthly PP</a>
-                    <a href="@Url.Action("announcements", "SP")"><span>&#8211;</span> Announcements</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> Rework Cost</a>
-                    <a href="@Url.Action("Safety_Summary", "SP")"><span>&#8211;</span> Safety Summary</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> Machine Breakdown</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> All Charts</a>
+                    <a href="@Url.Action("Output", "KOG_SP")"><span>&#8211;</span> OutPut</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> NRFT</a>
+                    <a href="@Url.Action("Birthday", "KOG_SP")"><span>&#8211;</span> Birthday</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Kaizen Plan</a>
+                    <a href="@Url.Action("MonthlyPP", "KOG_SP")"><span>&#8211;</span> Monthly PP</a>
+                    <a href="@Url.Action("announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Rework Cost</a>
+                    <a href="@Url.Action("Safety_Summary", "KOG_SP")"><span>&#8211;</span> Safety Summary</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Machine Breakdown</a>
                 </div>
             </div>
         </li>
@@ -459,25 +459,25 @@
 <div class="container-announcements">
     <div class="announcements-header">
         <div class="header-titles">
-            <h1>Five S Achievements</h1>
+            <h1>Birthday</h1>
             <div class="breadcrumb">
-                SP KGG &gt; <a href="#">Five S Achievements</a>
+                SP KGG &gt; <a href="#">Birthday</a>
             </div>
         </div>
+        <button class="add-announcement-btn" onclick="window.location.href='/KOG_SP/Add_SafetySummary'">Add Birthday</button>
     </div>
 
     <div class="announcements-main">
-        <h2 style="text-align:center; color:#222246; font-size:2rem; font-weight:800; margin:40px 0 22px 0;">Five S Achievements</h2>
+        <h2 style="text-align:center; color:#222246; font-size:2rem; font-weight:800; margin:40px 0 22px 0;">Birthday</h2>
         <table class="announcements-table announcements-table-yellow">
             <thead>
                 <tr>
                     <th> Date</th>
-                    <th>Sort</th>
-                    <th>Straighten</th>
-                    <th>Shine</th>
-                    <th>Standardize</th>
-                    <th>Sustain</th>
-                    <th>5S score</th>
+                    <th>Employee Number</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -486,9 +486,8 @@
                     <td>ffww</td>
                     <td>fsdffbgsaddadadc</td>
                     <td>Line achievements</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
-                    <td>ffww</td>
+                    <td><a href="#" class="edit-link">Edit</a></td>
+                    <td><a href="#" class="delete-link">Delete</a></td>
                 </tr>
             </tbody>
         </table>
@@ -522,5 +521,6 @@
         sidebarVisible = !sidebarVisible;
     });
 </script>
+
 
 

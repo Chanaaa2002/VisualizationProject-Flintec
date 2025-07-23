@@ -12,16 +12,20 @@ namespace VIsualizationProject.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
-        [StringLength(50)]
-        public string Username { get; set; }
-        [Required]
-        [StringLength(50)]
 
+        [Required, StringLength(50)]
+        public string Username { get; set; }
+
+        [Required, StringLength(50)]
         public string Password { get; set; }
-        [Required]
-        [StringLength(20)]
-        public string Role { get; set; } 
-    
+
+        [Required, StringLength(20)]
+        public string Role { get; set; } // Supervisor, DataEntry
+
+        [Required, StringLength(20)]
+        public string PL { get; set; } // Production Line (e.g., SP, RS1)
+
+        [Required, StringLength(20)]
+        public string Location { get; set; } // KOG or KTY
     }
 }
