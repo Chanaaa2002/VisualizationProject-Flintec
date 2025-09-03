@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "SP OGQC Chart";
+}
+
+<style>
+    .top-navbar {
+        width: 100%;
+        height: 70px;
+        background: #800000;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1050;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        padding: 0 64px 0 64px;
+    }
+
+        .top-navbar .navbar-brand {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .top-navbar .navbar-links {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+
+            .top-navbar .navbar-links a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.1rem;
+                font-weight: 600;
+                transition: color 0.2s;
+            }
+
+                .top-navbar .navbar-links a:hover {
+                    color: #ffd700;
+                }
+</style>
+<div class="top-navbar">
+    <div class="navbar-brand">Production Visualization</div>
+    <div class="navbar-links">
+        <a href="@Url.Action("SP_OGQC", "KOG_SP")">Go Back</a>
+        <a href="@Url.Action("Login", "Acc")">Logout</a>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style="max-width: 1000px; margin: 140px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.09); padding: 32px;">
+    <h2 id="spOgqcTitle" style="text-align: center; color: #000000; font-size: 2rem; font-weight: 600;">
+        SP OGQC Summary per Month (<span id="currentYearLabel"></span>)
+    </h2>
+    <canvas id="spOgqcBarChart"></canvas>
+</div>
+
+<script>
+    var chart;
+    var monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var currentYear = new Date().getFullYear();
+
+    function drawYearChart(year) {
+        $("#currentYearLabel").text(year);
+        $.getJSON('@Url.Action("GetSPQtyByYear", "KOG_SP")', { year: year }, function (data) {
+            var labels = monthNames;
+            var values = data.map(x => x.DefectQty);
+
+            if (!chart) {
+                const ctx = document.getElementById('spOgqcBarChart').getContext('2d');
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Defect Qty',
+                            data: values,
+                            backgroundColor: 'rgba(54, 162, 235, 0.7)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false },
+                            title: { display: false }
+                        },
+                        scales: {
+                            x: { title: { display: true, text: 'Month' } },
+                            y: { beginAtZero: true, title: { display: true, text: 'Defect Qty' } }
+                        }
+                    }
+                });
+            } else {
+                chart.data.labels = labels;
+                chart.data.datasets[0].data = values;
+                chart.update();
+            }
+        });
+    }
+
+    // Draw chart for the current year on initial load
+    drawYearChart(currentYear);
+
+    // Check every 10 minutes if the year has changed and update chart if needed
+    setInterval(function() {
+        var nowYear = new Date().getFullYear();
+        if (nowYear !== currentYear) {
+            currentYear = nowYear;
+            drawYearChart(currentYear);
+        }
+    },  60 * 1000); // 10 minutes interval
+</script>

@@ -237,49 +237,31 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BirthdayPost.cs" />
+    <Compile Include="Controllers\FlintecFiveSDbContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LayoutModel.cs" />
     <Compile Include="Controllers\MonthlyPPController.cs" />
+    <Compile Include="Controllers\OGQCMonthlySummary.cs" />
     <Compile Include="Controllers\OutputController.cs" />
     <Compile Include="Controllers\KOG_SPController.cs" />
+    <Compile Include="Controllers\QualityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202507041007392_InitialCreate1.cs" />
-    <Compile Include="Migrations\202507041007392_InitialCreate1.Designer.cs">
-      <DependentUpon>202507041007392_InitialCreate1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202507070702008_MakeDateColumnDateType.cs" />
-    <Compile Include="Migrations\202507070702008_MakeDateColumnDateType.Designer.cs">
-      <DependentUpon>202507070702008_MakeDateColumnDateType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202507070740020_AddIdPrimaryKeyToSafetySummary.cs" />
-    <Compile Include="Migrations\202507070740020_AddIdPrimaryKeyToSafetySummary.Designer.cs">
-      <DependentUpon>202507070740020_AddIdPrimaryKeyToSafetySummary.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202507090910021_Announcements.cs" />
-    <Compile Include="Migrations\202507090910021_Announcements.Designer.cs">
-      <DependentUpon>202507090910021_Announcements.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202507230654242_SyncModelAfterFix.cs" />
-    <Compile Include="Migrations\202507230654242_SyncModelAfterFix.Designer.cs">
-      <DependentUpon>202507230654242_SyncModelAfterFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202507230806215_Birthday.cs" />
-    <Compile Include="Migrations\202507230806215_Birthday.Designer.cs">
-      <DependentUpon>202507230806215_Birthday.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202507230808158_Birthday1.cs" />
-    <Compile Include="Migrations\202507230808158_Birthday1.Designer.cs">
-      <DependentUpon>202507230808158_Birthday1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202507230811467_Birthday11.cs" />
-    <Compile Include="Migrations\202507230811467_Birthday11.Designer.cs">
-      <DependentUpon>202507230811467_Birthday11.cs</DependentUpon>
+    <Compile Include="Migrations\202508200551321_ProductionVisualization.cs" />
+    <Compile Include="Migrations\202508200551321_ProductionVisualization.Designer.cs">
+      <DependentUpon>202508200551321_ProductionVisualization.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Announcements.cs" />
-    <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Birthday1.cs" />
+    <Compile Include="Models\FlintecFiveS.cs" />
+    <Compile Include="Models\ProductionVisualization.cs" />
+    <Compile Include="Models\Birthdays.cs" />
+    <Compile Include="Models\FiveS_Audit_Data.cs" />
+    <Compile Include="Models\Layout.cs" />
+    <Compile Include="Models\OGQC.cs" />
     <Compile Include="Models\Safety_Summary.cs" />
     <Compile Include="Models\UserVisual.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -351,6 +333,14 @@
     <Content Include="Views\SM\Home.cshtml" />
     <Content Include="Views\KOG_SP\Output.cshtml" />
     <Content Include="Views\KOG_SP\MonthlyPP.cshtml" />
+    <Content Include="Views\KOG_SP\Attendance.cshtml" />
+    <Content Include="Views\Quality\AddOGQC.cshtml" />
+    <Content Include="Views\Quality\OGQC.cshtml" />
+    <Content Include="Views\Quality\OGQC_Chart.cshtml" />
+    <Content Include="Views\KOG_SP\SP_OGQC.cshtml" />
+    <Content Include="Views\KOG_SP\SP_OGQCchart.cshtml" />
+    <Content Include="Views\KOG_SP\LayOut.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\KOG_SP\All_Charts.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -386,29 +376,8 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202507041007392_InitialCreate1.resx">
-      <DependentUpon>202507041007392_InitialCreate1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202507070702008_MakeDateColumnDateType.resx">
-      <DependentUpon>202507070702008_MakeDateColumnDateType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202507070740020_AddIdPrimaryKeyToSafetySummary.resx">
-      <DependentUpon>202507070740020_AddIdPrimaryKeyToSafetySummary.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202507090910021_Announcements.resx">
-      <DependentUpon>202507090910021_Announcements.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202507230654242_SyncModelAfterFix.resx">
-      <DependentUpon>202507230654242_SyncModelAfterFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202507230806215_Birthday.resx">
-      <DependentUpon>202507230806215_Birthday.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202507230808158_Birthday1.resx">
-      <DependentUpon>202507230808158_Birthday1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202507230811467_Birthday11.resx">
-      <DependentUpon>202507230811467_Birthday11.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202508200551321_ProductionVisualization.resx">
+      <DependentUpon>202508200551321_ProductionVisualization.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

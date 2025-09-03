@@ -1,6 +1,8 @@
 ﻿
+@model IEnumerable<VIsualizationProject.Models.Birthdays>
 @{
     ViewBag.Title = "Birthday";
+    
 }
 
 <style>
@@ -29,7 +31,7 @@
     }
 
     .dropdown-list {
-        max-height: 600px;
+        max-height: 900px;
         overflow-y: auto;
     }
 
@@ -42,7 +44,7 @@
         font-weight: 700;
         letter-spacing: 1px;
         background: #fff;
-        color: #222246;
+        color: #000000;
         border-bottom: 1px solid #f4f4f6;
     }
 
@@ -64,7 +66,7 @@
         cursor: pointer;
         font-size: 1.11rem;
         font-weight: 500;
-        color: #222246;
+        color: #000000;
         background: #fff;
         border-radius: 10px;
         border: 1px solid transparent;
@@ -73,9 +75,9 @@
 
     .sidebar .dropdown-header:hover,
     .sidebar .dropdown.open .dropdown-header {
-        background: #222246;
+        background: #800000;
         color: #fff;
-        border: 1px solid #222246;
+        border: 1px solid #800000;
     }
 
     .sidebar .dropdown-list {
@@ -93,7 +95,7 @@
 
     .sidebar .dropdown-list a {
         padding: 7px 28px;
-        color: #222246;
+        color: #000000;
         text-decoration: none;
         font-size: 1.04rem;
         border-radius: 4px;
@@ -110,7 +112,7 @@
     .top-navbar {
         width: 100%;
         height: 64px;
-        background: #222246;
+        background: #800000;
         color: #fff;
         display: flex;
         align-items: center;
@@ -151,11 +153,11 @@
     }
 
     .container-announcements {
-        margin-top: 50px;
-        margin-left: 190px;
+        margin-top: 80px;
+        margin-left: 170px;
         padding: 32px;
         width: calc(100vw - 260px);
-        max-width: 1200px;
+        max-width: 1300px;
         min-width: 350px;
         min-height: calc(100vh - 80px);
         box-sizing: border-box;
@@ -199,7 +201,7 @@
     }
 
     .add-announcement-btn {
-        background: #000;
+        background: #000000;
         color: #fff;
         border: none;
         border-radius: 12px;
@@ -243,7 +245,7 @@
     }
 
     .announcements-table thead tr {
-        background: #ffa600;
+        background: #800000;
         color: #fff;
     }
 
@@ -414,7 +416,7 @@
     <a href="#" class="navbar-brand">Production  Visualization</a>
     <div class="navbar-links">
         <a href="@Url.Action("Dashboard", "KOG_SP")">Dashboard</a>
-        <a href="#">Logout</a>
+        <a href="@Url.Action("Login", "Acc")">Logout</a>
     </div>
 </div>
 
@@ -438,18 +440,18 @@
                     <span class="arrow">&#8964;</span>
                 </div>
                 <div class="dropdown-list">
-                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> All Charts</a>
+                    <a href="@Url.Action("All_Charts", "KOG_SP")"><span>&#8211;</span> All Charts</a>
                     <a href="@Url.Action("Output", "KOG_SP")"><span>&#8211;</span> OutPut</a>
-                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> NRFT</a>
+                    <a href="@Url.Action("Attendance", "KOG_SP")"><span>&#8211;</span> Attendance</a>
                     <a href="@Url.Action("Birthday", "KOG_SP")"><span>&#8211;</span> Birthday</a>
                     <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Delivery Performance</a>
-                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> 5S Achievement</a>
-                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Kaizen Plan</a>
-                    <a href="@Url.Action("MonthlyPP", "KOG_SP")"><span>&#8211;</span> Monthly PP</a>
-                    <a href="@Url.Action("announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
+                    <a href="@Url.Action("five_s", "KOG_SP")"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="@Url.Action("SP_OGQC", "KOG_SP")"><span>&#8211;</span> OGQC</a>
+                    <a href=@Url.Action("MonthlyPP", "KOG_SP")><span>&#8211;</span> Monthly PP</a>
+                    <a href="@Url.Action("Announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
                     <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Rework Cost</a>
                     <a href="@Url.Action("Safety_Summary", "KOG_SP")"><span>&#8211;</span> Safety Summary</a>
-                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Machine Breakdown</a>
+                    <a href="@Url.Action("LayOut", "KOG_SP")"><span>&#8211;</span> LayOut</a>
                 </div>
             </div>
         </li>
@@ -464,10 +466,16 @@
                 SP KGG &gt; <a href="#">Birthday</a>
             </div>
         </div>
-        <button class="add-announcement-btn" onclick="window.location.href='/KOG_SP/Add_SafetySummary'">Add Birthday</button>
+        <button class="add-announcement-btn" onclick="window.location.href='/KOG_SP/Add_Birthday'">Add Birthday</button>
     </div>
 
     <div class="announcements-main">
+        @if (TempData["success"] != null)
+        {
+            <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #c3e6cb; text-align: center; font-weight: 500;">
+                @TempData["success"]
+            </div>
+        }
         <h2 style="text-align:center; color:#222246; font-size:2rem; font-weight:800; margin:40px 0 22px 0;">Birthday</h2>
         <table class="announcements-table announcements-table-yellow">
             <thead>
@@ -476,19 +484,22 @@
                     <th>Employee Number</th>
                     <th>Name</th>
                     <th>Position</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    
+                    
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>23, June, 2025</td>
-                    <td>ffww</td>
-                    <td>fsdffbgsaddadadc</td>
-                    <td>Line achievements</td>
-                    <td><a href="#" class="edit-link">Edit</a></td>
-                    <td><a href="#" class="delete-link">Delete</a></td>
-                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Date.ToString("dd, MMMM, yyyy")</td>
+                        <td>@item.Employee_Number</td>
+                        <td>@item.Name</td>
+                        <td>@item.Position</td>
+                        
+                       
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

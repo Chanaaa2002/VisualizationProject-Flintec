@@ -338,8 +338,8 @@
     </button>
     <a href="#" class="navbar-brand">Production  Visualization</a>
     <div class="navbar-links">
-        <a href="#">Settings</a>
-        <a href="#">Logout</a>
+        <a href="@Url.Action("Dashboard", "KOG_SP")">Dashboard</a>
+        <a href="@Url.Action("Login", "Acc")">Logout</a>
     </div>
 </div>
 
@@ -365,18 +365,18 @@
                     <span class="arrow">&#8964;</span>
                 </div>
                 <div class="dropdown-list">
-                    <a href="#"><span>&#8211;</span> All Charts</a>
+                    <a href="@Url.Action("All_Charts", "KOG_SP")"><span>&#8211;</span> All Charts</a>
                     <a href="@Url.Action("Output", "KOG_SP")"><span>&#8211;</span> OutPut</a>
-                    <a href="#"><span>&#8211;</span> NRFT</a>
-                    <a href="#"><span>&#8211;</span> Birthday</a>
-                    <a href="#"><span>&#8211;</span> Delivery Performance</a>
-                    <a href="#"><span>&#8211;</span> 5S Achievement</a>
-                    <a href="#"><span>&#8211;</span> Kaizen Plan</a>
-                    <a href="@Url.Action("MonthlyPP", "KOG_SP")"><span>&#8211;</span> Monthly PP</a>
-                    <a href="@Url.Action("announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
-                    <a href="#"><span>&#8211;</span> Rework Cost</a>
-                    <a href="@Url.Action("Safety_Summery", "KOG_SP")"><span>&#8211;</span> Safety Summery</a>
-                    <a href="#"><span>&#8211;</span> Machine Breakdown</a>
+                    <a href="@Url.Action("Attendance", "KOG_SP")"><span>&#8211;</span> Attendance</a>
+                    <a href="@Url.Action("Birthday", "KOG_SP")"><span>&#8211;</span> Birthday</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="@Url.Action("five_s", "KOG_SP")"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="@Url.Action("SP_OGQC", "KOG_SP")"><span>&#8211;</span> OGQC</a>
+                    <a href=@Url.Action("MonthlyPP", "KOG_SP")><span>&#8211;</span> Monthly PP</a>
+                    <a href="@Url.Action("Announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Rework Cost</a>
+                    <a href="@Url.Action("Safety_Summary", "KOG_SP")"><span>&#8211;</span> Safety Summary</a>
+                    <a href="@Url.Action("LayOut", "KOG_SP")"><span>&#8211;</span> LayOut</a>
                 </div>
             </div>
         </li>

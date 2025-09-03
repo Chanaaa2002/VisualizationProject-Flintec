@@ -8,7 +8,7 @@ using System.Web;
 namespace VIsualizationProject.Models
 {
     [Table("Announcements")]
-    public class Announcements
+    public class Announcement
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,7 +20,7 @@ namespace VIsualizationProject.Models
 
         [Required]
         [StringLength(50)]
-        public string Announcement { get; set; }
+        public string Announcement_name { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -29,7 +29,7 @@ namespace VIsualizationProject.Models
         [Required]
         [StringLength(50)]
         public string Publisher_Post { get; set; }
-          
+
         [Required]
         [StringLength(50)]
         public string Type { get; set; }
@@ -41,15 +41,11 @@ namespace VIsualizationProject.Models
         [Column(TypeName = "date")]
         [Required]
         public DateTime End_Date { get; set; }
-
         [Required]
         [StringLength(50)]
-        public string IsDisplayed { get; set; }
-
-
-        //[Column(TypeName = "date")]
-        //[Required]
-        //public object StartDate { get; internal set; }
-        //public bool IsDisplayed { get; set; }
+        public string Production_Line { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Location { get; set; }
     }
 }

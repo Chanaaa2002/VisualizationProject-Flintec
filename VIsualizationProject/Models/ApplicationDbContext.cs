@@ -14,7 +14,7 @@ namespace VIsualizationProject.Models
         public DbSet<UserVisual> UserVisuals { get; set; }
         public DbSet<Safety_Summary> Safety { get; set; }
         public DbSet<Announcements> announcements { get; set; }
-        public DbSet<Birthday1> birthday { get; set; }
+        public DbSet<Birthday> birthday { get; set; }
 
     }
 }

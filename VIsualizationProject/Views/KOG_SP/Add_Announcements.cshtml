@@ -1,4 +1,4 @@
-﻿@model VIsualizationProject.Models.Announcements
+﻿@model VIsualizationProject.Models.Announcement
     ViewBag.Title = "Add_Announcements";
 }
 
@@ -12,7 +12,7 @@
     .top-navbar {
         width: 100%;
         height: 64px;
-        background: #222246;
+        background: #800000;
         color: #fff;
         display: flex;
         align-items: center;
@@ -95,7 +95,7 @@
         top: 0;
         left: 0;
         background: #fff;
-        color: #222246;
+        color: #000000;
         transition: width 0.3s;
         z-index: 1000;
         border-right: 1px solid #e5e5e5;
@@ -122,7 +122,7 @@
             font-weight: 700;
             letter-spacing: 1px;
             background: #fff;
-            color: #222246;
+            color: #000000;
             transition: opacity 0.3s;
             white-space: nowrap;
             border-bottom: 1px solid #f4f4f6;
@@ -131,7 +131,7 @@
 
             .sidebar .sidebar-header .sidebar-home-icon {
                 font-size: 1.35rem;
-                color: #222246;
+                color: #000000;
                 margin-right: 3px;
             }
 
@@ -157,7 +157,7 @@
             user-select: none;
             font-size: 1.15rem;
             font-weight: 500;
-            color: #222246;
+            color: #000000;
             border-radius: 10px;
             border: 1px solid transparent;
             transition: background 0.15s, border 0.15s, color 0.15s;
@@ -179,14 +179,14 @@
 
             .sidebar .dropdown-header .arrow {
                 font-size: 1.3rem;
-                color: #222246;
+                color: #000000;
                 transition: transform 0.2s;
             }
 
         .sidebar .dropdown.open .dropdown-header {
-            background: #222246;
+            background: #800000;
             color: #fff;
-            border: 1px solid #222246;
+            border: 1px solid #800000;
         }
 
             .sidebar .dropdown.open .dropdown-header .arrow {
@@ -216,7 +216,7 @@
             align-items: center;
             gap: 7px;
             padding: 7px 18px;
-            color: #222246;
+            color: #000000;
             text-decoration: none;
             font-size: 1.05rem;
             border-radius: 4px;
@@ -279,7 +279,7 @@
             font-size: 1.7rem;
             font-weight: 900;
             margin-bottom: 8px;
-            color: #222246;
+            color: #000000;
             text-align: left;
         }
 
@@ -296,7 +296,7 @@
     }
 
         .breadcrumb-card .breadcrumb a {
-            color: #0074d9;
+            color: #2f38e6;
             text-decoration: none;
             font-weight: 600;
         }
@@ -351,7 +351,7 @@
     .black-btn {
         width: 12%;
         padding: 10px 0;
-        background: #222246;
+        background: #000000;
         color: #fff;
         border: none;
         border-radius: 12px;
@@ -364,10 +364,10 @@
     }
 
         .black-btn:hover {
-            background: #1a1a35;
+            background: #000000;
         }
 
-    media (max-width: 1000px) {
+    @@media (max-width: 1000px) {
         .main-content-wrapper
 
     {
@@ -380,7 +380,7 @@
 
     }
 
-    media (max-width: 800px) {
+    @@media (max-width: 800px) {
         .main-content-wrapper
 
     {
@@ -420,7 +420,7 @@
     <a href="#" class="navbar-brand">Production Visualization</a>
     <div class="navbar-links">
         <a href="@Url.Action("Dashboard", "KOG_SP")">Dashboard</a>
-        <a href="#">Logout</a>
+        <a href="@Url.Action("Login", "Acc")">Logout</a>
     </div>
 </div>
 
@@ -444,18 +444,18 @@
                     <span class="arrow">&#8964;</span>
                 </div>
                 <div class="dropdown-list">
-                    <a href="#"><span>&#8211;</span> All Charts</a>
-                    <a href="#"><span>&#8211;</span> OutPut</a>
-                    <a href="#"><span>&#8211;</span> NRFT</a>
+                    <a href="@Url.Action("All_Charts", "KOG_SP")"><span>&#8211;</span> All Charts</a>
+                    <a href="@Url.Action("Output", "KOG_SP")"><span>&#8211;</span> OutPut</a>
+                    <a href="@Url.Action("Attendance", "KOG_SP")"><span>&#8211;</span> Attendance</a>
                     <a href="@Url.Action("Birthday", "KOG_SP")"><span>&#8211;</span> Birthday</a>
-                    <a href="#"><span>&#8211;</span> Delivery Performance</a>
-                    <a href="#"><span>&#8211;</span> 5S Achievement</a>
-                    <a href="#"><span>&#8211;</span> Kaizen Plan</a>
-                    <a href="#"><span>&#8211;</span> Monthly PP</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="@Url.Action("five_s", "KOG_SP")"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="@Url.Action("SP_OGQC", "KOG_SP")"><span>&#8211;</span> OGQC</a>
+                    <a href=@Url.Action("MonthlyPP", "KOG_SP")><span>&#8211;</span> Monthly PP</a>
                     <a href="@Url.Action("Announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
                     <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Rework Cost</a>
                     <a href="@Url.Action("Safety_Summary", "KOG_SP")"><span>&#8211;</span> Safety Summary</a>
-                    <a href="#"><span>&#8211;</span> Machine Breakdown</a>
+                    <a href="@Url.Action("LayOut", "KOG_SP")"><span>&#8211;</span> LayOut</a>
                 </div>
             </div>
         </li>
@@ -481,8 +481,16 @@
                     @Html.TextBoxFor(m => m.Date, new { @type = "date", @class = "form-control", required = "required" })
                 </div>
                 <div class="form-group">
+                    <label for="Production_Line">Production Line</label>
+                    @Html.TextBoxFor(m => m.Production_Line, new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.ProductionLine })
+                </div>
+                <div class="form-group">
+                    <label for="Location">Location</label>
+                    @Html.TextBoxFor(m => m.Location, new { @readonly = "readonly", @class = "form-control", @Value = ViewBag.Location })
+                </div>
+                <div class="form-group">
                     <label for="Announcement">Announcement</label>
-                    @Html.TextBoxFor(m => m.Announcement, new { @class = "form-control", required = "required" })
+                    @Html.TextBoxFor(m => m.Announcement_name, new { @class = "form-control", required = "required" })
                 </div>
                 <div class="form-group">
                     <label for="Type">Announcement type</label>
@@ -564,7 +572,6 @@
         window.location.href = '/KOG_SP/AddSafetySummary';
     });
     document.querySelector('.announcement-form').addEventListener('submit', function () {
-        // Optional: Show loading spinner or disable button
         document.querySelector('button[type="submit"]').disabled = true;
     });
 </script>

@@ -19,7 +19,7 @@
         top: 0;
         left: 0;
         background: #fff;
-        color: #222246;
+        color: #000000;
         overflow-x: hidden;
         transition: width 0.3s;
         z-index: 1000;
@@ -42,7 +42,7 @@
         font-weight: 700;
         letter-spacing: 1px;
         background: #fff;
-        color: #222246;
+        color: #000000;
         border-bottom: 1px solid #f4f4f6;
     }
 
@@ -64,7 +64,7 @@
         cursor: pointer;
         font-size: 1.11rem;
         font-weight: 500;
-        color: #222246;
+        color: #000000;
         background: #fff;
         border-radius: 10px;
         border: 1px solid transparent;
@@ -73,9 +73,9 @@
 
         .sidebar .dropdown-header:hover,
         .sidebar .dropdown.open .dropdown-header {
-            background: #222246;
+            background: #800000;
             color: #fff;
-            border: 1px solid #222246;
+            border: 1px solid #800000;
         }
 
     .sidebar .dropdown-list {
@@ -93,7 +93,7 @@
 
     .sidebar .dropdown-list a {
         padding: 7px 28px;
-        color: #222246;
+        color: #000000;
         text-decoration: none;
         font-size: 1.04rem;
         border-radius: 4px;
@@ -110,7 +110,7 @@
     .top-navbar {
         width: 100%;
         height: 64px;
-        background: #222246;
+        background: #800000;
         color: #fff;
         display: flex;
         align-items: center;
@@ -151,11 +151,11 @@
                 }
 
     .container-announcements {
-        margin-top: 50px;
-        margin-left: 190px;
+        margin-top: 80px;
+        margin-left: 170px;
         padding: 32px;
         width: calc(100vw - 260px);
-        max-width: 1200px;
+        max-width: 1300px;
         min-width: 350px;
         min-height: calc(100vh - 80px);
         box-sizing: border-box;
@@ -176,7 +176,7 @@
     .header-titles h1 {
         font-size: 1.6rem;
         font-weight: 700;
-        color: #222246;
+        color: #000000;
         margin: 0 0 10px 0;
     }
 
@@ -224,7 +224,7 @@
 
         .announcements-main h2 {
             text-align: center;
-            color: #262654;
+            color: #000000;
             font-size: 1.7rem;
             font-weight: 700;
             letter-spacing: 1px;
@@ -243,7 +243,7 @@
     }
 
         .announcements-table thead tr {
-            background: #ffa600;
+            background: #800000;
             color: #fff;
         }
 
@@ -413,8 +413,8 @@
     </button>
     <a href="#" class="navbar-brand">Production  Visualization</a>
     <div class="navbar-links">
-        <a href="@Url.Action("Home", "SP")">Home</a>
-        <a href="#">Logout</a>
+        <a href="@Url.Action("Dashboard", "KOG_SP")">Dashboard</a>
+        <a href="@Url.Action("Login", "Acc")">Logout</a>
     </div>
 </div>
 
@@ -440,16 +440,16 @@
                 <div class="dropdown-list">
                     <a href="@Url.Action("All_Charts", "KOG_SP")"><span>&#8211;</span> All Charts</a>
                     <a href="@Url.Action("Output", "KOG_SP")"><span>&#8211;</span> OutPut</a>
-                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> NRFT</a>
+                    <a href="@Url.Action("Attendance", "KOG_SP")"><span>&#8211;</span> Attendance</a>
                     <a href="@Url.Action("Birthday", "KOG_SP")"><span>&#8211;</span> Birthday</a>
                     <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Delivery Performance</a>
-                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> 5S Achievement</a>
-                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Kaizen Plan</a>
-                    <a href="@Url.Action("MonthlyPP", "KOG_SP")"><span>&#8211;</span> Monthly PP</a>
-                    <a href="@Url.Action("announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
+                    <a href="@Url.Action("five_s", "KOG_SP")"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="@Url.Action("SP_OGQC", "KOG_SP")"><span>&#8211;</span> OGQC</a>
+                    <a href=@Url.Action("MonthlyPP", "KOG_SP")><span>&#8211;</span> Monthly PP</a>
+                    <a href="@Url.Action("Announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
                     <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Rework Cost</a>
                     <a href="@Url.Action("Safety_Summary", "KOG_SP")"><span>&#8211;</span> Safety Summary</a>
-                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Machine Breakdown</a>
+                    <a href="@Url.Action("LayOut", "KOG_SP")"><span>&#8211;</span> LayOut</a>
                 </div>
             </div>
         </li>
@@ -502,9 +502,11 @@
                         <td colspan="6" style="text-align:center;">No records found.</td>
                     </tr>
                 }
-            </tbody>>
+            </tbody>
         </table>
     </div>
+
+
 </div>
 
 <div class="modal fade" id="editSafetyModal" tabindex="-1" aria-labelledby="editSafetyModalLabel" aria-hidden="true">

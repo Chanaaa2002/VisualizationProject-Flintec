@@ -29,9 +29,15 @@ namespace VIsualizationProject.Models
         [Required]
         [StringLength(50)]
         public string Description { get; set; }
-        
+        [Required]
+        [StringLength(50)]
+        public string Production_Line { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Location { get; set; }
 
-       
+
+
     }
 }
        

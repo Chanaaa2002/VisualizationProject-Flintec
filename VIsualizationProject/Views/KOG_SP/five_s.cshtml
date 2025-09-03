@@ -103,9 +103,9 @@
         box-sizing: border-box;
     }
 
-    .sidebar .dropdown-list a:hover {
-        background: #d3dbe7;
-    }
+        .sidebar .dropdown-list a:hover {
+            background: #d3dbe7;
+        }
 
     .top-navbar {
         width: 100%;
@@ -413,13 +413,13 @@
     </button>
     <a href="#" class="navbar-brand">Production  Visualization</a>
     <div class="navbar-links">
-        <a href="@Url.Action("Home", "SP")">Home</a>
-        <a href="#">Logout</a>
+        <a href="@Url.Action("Dashboard", "KOG_SP")">Dashboard</a>
+        <a href="@Url.Action("Login", "Acc")">Logout</a>
     </div>
 </div>
 
 <div class="sidebar" id="mainSidebar">
-    <div class="sidebar-header" style="cursor:pointer;" onclick="window.location.href='/SP/Home'">
+    <div class="sidebar-header" style="cursor:pointer;" onclick="window.location.href='/KOG_SP/Dashboard'">
         <span class="sidebar-home-icon">&#8962;</span>
         <span>KGG</span>
     </div>
@@ -438,18 +438,18 @@
                     <span class="arrow">&#8964;</span>
                 </div>
                 <div class="dropdown-list">
-                    <a href="@Url.Action("All_Charts", "SP")"><span>&#8211;</span> All Charts</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> OutPut</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> NRFT</a>
-                    <a href="@Url.Action("Birthday", "SP")"><span>&#8211;</span> Birthday</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> Delivery Performance</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> 5S Achievement</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> Kaizen Plan</a>
-                    <a href="@Url.Action("MonthlyPP", "SP")"><span>&#8211;</span> Monthly PP</a>
-                    <a href="@Url.Action("announcements", "SP")"><span>&#8211;</span> Announcements</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> Rework Cost</a>
-                    <a href="@Url.Action("Safety_Summary", "SP")"><span>&#8211;</span> Safety Summary</a>
-                    <a href="@Url.Action("", "SP")"><span>&#8211;</span> Machine Breakdown</a>
+                    <a href="@Url.Action("All_Charts", "KOG_SP")"><span>&#8211;</span> All Charts</a>
+                    <a href="@Url.Action("Output", "KOG_SP")"><span>&#8211;</span> OutPut</a>
+                    <a href="@Url.Action("Attendance", "KOG_SP")"><span>&#8211;</span> Attendance</a>
+                    <a href="@Url.Action("Birthday", "KOG_SP")"><span>&#8211;</span> Birthday</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="@Url.Action("five_s", "KOG_SP")"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="@Url.Action("SP_OGQC", "KOG_SP")"><span>&#8211;</span> OGQC</a>
+                    <a href=@Url.Action("MonthlyPP", "KOG_SP")><span>&#8211;</span> Monthly PP</a>
+                    <a href="@Url.Action("Announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Rework Cost</a>
+                    <a href="@Url.Action("Safety_Summary", "KOG_SP")"><span>&#8211;</span> Safety Summary</a>
+                    <a href="@Url.Action("LayOut", "KOG_SP")"><span>&#8211;</span> LayOut</a>
                 </div>
             </div>
         </li>
@@ -480,16 +480,7 @@
                     <th>5S score</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>23, June, 2025</td>
-                    <td>ffww</td>
-                    <td>fsdffbgsaddadadc</td>
-                    <td>Line achievements</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
-                    <td>ffww</td>
-                </tr>
+            <tbody id="fiveSBody">
             </tbody>
         </table>
     </div>
@@ -520,6 +511,41 @@
             document.querySelector('.container-announcements').style.width = 'calc(100vw - 260px)';
         }
         sidebarVisible = !sidebarVisible;
+    });
+
+
+function sumFields(obj, fields) {
+    return fields.reduce((sum, f) => sum + (obj[f] || 0), 0);
+}
+
+fetch('@Url.Action("GetFiveSAuditData", "KOG_SP")')
+    .then(response => response.json())
+    .then(data => {
+        const tbody = document.getElementById('fiveSBody');
+        tbody.innerHTML = "";
+        data.forEach(item => {
+            let dt = new Date(item.Date);
+            if (item.Date && typeof item.Date === 'string' && item.Date.indexOf('/Date(') === 0) {
+                dt = new Date(parseInt(item.Date.replace(/\/Date\((\d+)\)\//, '$1')));
+            }
+            const dateStr = dt.toLocaleDateString("en-GB", { day: '2-digit', month: 'long', year: 'numeric' });
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${dateStr}</td>
+                <td>${item.Sort}</td>
+                <td>${item.Straighten}</td>
+                <td>${item.Shine}</td>
+                <td>${item.Standardize}</td>
+                <td>${item.Sustain}</td>
+                <td>${item.Score}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    })
+    .catch(err => {
+        document.getElementById('fiveSBody').innerHTML = `<tr><td colspan="7">Error loading data.</td></tr>`;
+        console.error(err);
     });
 </script>
 

@@ -1,0 +1,168 @@
+﻿@using Newtonsoft.Json
+@{
+    ViewBag.Title = "OGQC Chart";
+    var months = ViewBag.Months as List<string> ?? new List<string>();
+    var lines = ViewBag.Lines as string[] ?? new string[0];
+    var summary = ViewBag.Summary as Dictionary<string, Dictionary<string, int>> ?? new Dictionary<string, Dictionary<string, int>>();
+}
+<style>
+    .top-navbar {
+        width: 100%;
+        height: 70px;
+        background: #232249;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1050;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        padding: 0 64px 0 64px;
+    }
+
+        .top-navbar .navbar-brand {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .top-navbar .navbar-links {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+
+            .top-navbar .navbar-links a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.1rem;
+                font-weight: 600;
+                transition: color 0.2s;
+            }
+
+                .top-navbar .navbar-links a:hover {
+                    color: #ffd700;
+                }
+
+    .chart-container-ogqc {
+        max-width: 900px;
+        margin: 110px auto 0 auto;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.09);
+        padding: 32px;
+    }
+
+    .select-month-ogqc {
+        display: block;
+        margin: 0 auto 24px auto;
+        font-size: 1.2rem;
+        padding: 7px 18px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-weight: 600;
+        background: #fafbfc;
+        color: #232249;
+    }
+</style>
+
+<div class="top-navbar">
+    <div class="navbar-brand">Production Visualization</div>
+    <div class="navbar-links">
+        <a href="@Url.Action("OGQC", "Quality")">Go Back</a>
+        <a href="#">Logout</a>
+    </div>
+</div>
+
+<div class="chart-container-ogqc">
+    <h2 style="text-align:center;">OGQC Summary</h2>
+    <select id="ogqcMonthSelect" class="select-month-ogqc">
+        <option value="all">Show All Months</option>
+        @foreach (var m in months)
+        {
+            var dateObj = DateTime.ParseExact(m, "yyyy-MM", null);
+            <option value="@m">@dateObj.ToString("yyyy MMMM")</option>
+        }
+    </select>
+    <canvas id="ogqcBarChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const months = @Html.Raw(JsonConvert.SerializeObject(months));
+    const lines = @Html.Raw(JsonConvert.SerializeObject(lines));
+    const summary = @Html.Raw(JsonConvert.SerializeObject(summary));
+
+    const barColors = [
+        'rgba(255, 99, 132, 0.7)',   // SP
+        'rgba(54, 162, 235, 0.7)',   // RS1
+        'rgba(255, 206, 86, 0.7)',   // RS2
+        'rgba(75, 192, 192, 0.7)',   // MD1
+        'rgba(153, 102, 255, 0.7)',  // PB
+        'rgba(255, 159, 64, 0.7)'    // GAGING
+    ];
+
+    let chart;
+
+    function renderChart(selectedMonth) {
+        let chartLabels, datasets, title;
+        if(selectedMonth && selectedMonth !== "all") {
+            chartLabels = lines;
+            datasets = [{
+                label: selectedMonth,
+                data: lines.map(line => (summary[line] && summary[line][selectedMonth]) ? summary[line][selectedMonth] : 0),
+                backgroundColor: barColors.slice(0, lines.length),
+            }];
+            title = `OGQC Defect Qty for ${selectedMonth}`;
+        } else {
+            chartLabels = months;
+            datasets = lines.map((line, idx) => ({
+                label: line,
+                data: months.map(month => (summary[line] && summary[line][month]) ? summary[line][month] : 0),
+                backgroundColor: barColors[idx % barColors.length],
+            }));
+            title = "OGQC Defect Qty per Month (Line-wise)";
+        }
+
+        const ctx = document.getElementById('ogqcBarChart').getContext('2d');
+        if(chart) chart.destroy();
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartLabels,
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: title }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: (selectedMonth && selectedMonth !== "all") ? 'Production Line' : 'Month' }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Defect Qty' }
+                    }
+                }
+            }
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const select = document.getElementById('ogqcMonthSelect');
+        if(months.length > 0) select.value = months[months.length - 1];
+        else select.value = "all";
+        renderChart(select.value);
+
+        select.addEventListener('change', function() {
+            renderChart(this.value);
+        });
+    });
+</script>

@@ -11,7 +11,7 @@ namespace VIsualizationProject.Controllers
 {
     public class AccController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ProductionVisualization db = new ProductionVisualization();
 
         [HttpGet]
         public ActionResult Login()
@@ -48,6 +48,8 @@ namespace VIsualizationProject.Controllers
                             case "PB": return RedirectToAction("Dashboard", "KOG_PB");
                             case "MD1": return RedirectToAction("Dashboard", "KOG_MD1");
                             case "GAGING": return RedirectToAction("Dashboard", "KOG_GAGING");
+                            case "Quality": return RedirectToAction("OGQC", "KOG_Quality");
+                            case "Admin": return RedirectToAction("Dashboard", "KOG_Admin");
                         }
                     }
                     else if (location == "KTY")
@@ -97,5 +99,6 @@ namespace VIsualizationProject.Controllers
             }
             return Json(message, JsonRequestBehavior.AllowGet);
         }
+      
     }
 }

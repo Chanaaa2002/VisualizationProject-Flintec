@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Animation Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            overflow-x: hidden;
+        }
+        
+        .demo-content {
+            position: relative;
+            z-index: 1;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .demo-title {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .demo-subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .chart-demo {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            backdrop-filter: blur(10px);
+        }
+        
+        .chart-title {
+            font-size: 2rem;
+            color: #800000;
+            margin-bottom: 20px;
+        }
+        
+        .chart-content {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* Bubble Animation Styles */
+        .bubble-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .bubble-wrapper div {
+            height: 60px;
+            width: 60px;
+            border: 2px solid rgba(255, 0, 0, 0.7);
+            border-radius: 50px;
+            position: absolute;
+            animation: 4s linear infinite;
+        }
+        
+        .bubble-wrapper div .dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50px;
+            background: rgba(255, 0, 0, 0.5);
+            position: absolute;
+            top: 20%;
+            right: 20%;
+        }
+        
+        .bubble-wrapper div:nth-child(1) {
+            top: 20%;
+            left: 20%;
+            animation: bubble-animate 8s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation: bubble-animate 10s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(3) {
+            top: 40%;
+            left: 40%;
+            animation: bubble-animate 3s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(4) {
+            top: 66%;
+            left: 30%;
+            animation: bubble-animate 7s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(5) {
+            top: 90%;
+            left: 10%;
+            animation: bubble-animate 9s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(6) {
+            top: 30%;
+            left: 60%;
+            animation: bubble-animate 5s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(7) {
+            top: 70%;
+            left: 20%;
+            animation: bubble-animate 8s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(8) {
+            top: 75%;
+            left: 60%;
+            animation: bubble-animate 10s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(9) {
+            top: 50%;
+            left: 50%;
+            animation: bubble-animate 6s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(10) {
+            top: 45%;
+            left: 20%;
+            animation: bubble-animate 10s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(11) {
+            top: 10%;
+            left: 90%;
+            animation: bubble-animate 9s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(12) {
+            top: 20%;
+            left: 70%;
+            animation: bubble-animate 7s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(13) {
+            top: 20%;
+            left: 20%;
+            animation: bubble-animate 8s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(14) {
+            top: 60%;
+            left: 5%;
+            animation: bubble-animate 6s linear infinite;
+        }
+        
+        .bubble-wrapper div:nth-child(15) {
+            top: 90%;
+            left: 80%;
+            animation: bubble-animate 9s linear infinite;
+        }
+        
+        @keyframes bubble-animate {
+            0% {
+                transform: scale(0) translateY(0) rotate(70deg);
+            }
+            100% {
+                transform: scale(1.3) translateY(-100px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Bubble Animation Background -->
+    <div class="bubble-wrapper">
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+    </div>
+    
+    <div class="demo-content">
+        <h1 class="demo-title">Bubble Animation Demo</h1>
+        <p class="demo-subtitle">Red bubbles floating on white background</p>
+        
+        <div class="chart-demo">
+            <h2 class="chart-title">Sample Chart 1</h2>
+            <p class="chart-content">This is a sample chart container showing how the bubble animation appears behind the content. The red bubbles create a dynamic, engaging background while maintaining readability.</p>
+        </div>
+        
+        <div class="chart-demo">
+            <h2 class="chart-title">Sample Chart 2</h2>
+            <p class="chart-content">Another chart example demonstrating the semi-transparent background with backdrop blur effect. The bubbles continue to animate in the background.</p>
+        </div>
+        
+        <div class="chart-demo">
+            <h2 class="chart-title">Sample Chart 3</h2>
+            <p class="chart-content">The bubble animation runs continuously with different timing for each bubble, creating a natural, organic movement pattern.</p>
+        </div>
+    </div>
+</body>
+</html>

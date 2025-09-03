@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VIsualizationProject.Models.Announcements>
+﻿@model IEnumerable<VIsualizationProject.Models.Announcement>
 @{
     ViewBag.Title = "Announcements";
 }
@@ -19,7 +19,7 @@
         top: 0;
         left: 0;
         background: #fff;
-        color: #222246;
+        color: #000000;
         overflow-x: hidden;
         transition: width 0.3s;
         z-index: 1000;
@@ -42,7 +42,7 @@
         font-weight: 700;
         letter-spacing: 1px;
         background: #fff;
-        color: #222246;
+        color: #000000;
         border-bottom: 1px solid #f4f4f6;
     }
 
@@ -64,7 +64,7 @@
         cursor: pointer;
         font-size: 1.11rem;
         font-weight: 500;
-        color: #222246;
+        color: #000000;
         background: #fff;
         border-radius: 10px;
         border: 1px solid transparent;
@@ -73,9 +73,9 @@
 
         .sidebar .dropdown-header:hover,
         .sidebar .dropdown.open .dropdown-header {
-            background: #222246;
+            background: #800000;
             color: #fff;
-            border: 1px solid #222246;
+            border: 1px solid #800000;
         }
 
     .sidebar .dropdown-list {
@@ -93,7 +93,7 @@
 
     .sidebar .dropdown-list a {
         padding: 7px 28px;
-        color: #222246;
+        color: #000000;
         text-decoration: none;
         font-size: 1.04rem;
         border-radius: 4px;
@@ -110,7 +110,7 @@
     .top-navbar {
         width: 100%;
         height: 64px;
-        background: #222246;
+        background: #800000;
         color: #fff;
         display: flex;
         align-items: center;
@@ -151,11 +151,11 @@
                 }
 
     .container-announcements {
-        margin-top: 50px;
-        margin-left: 190px;
+        margin-top: 80px;
+        margin-left: 170px;
         padding: 32px;
         width: calc(100vw - 260px);
-        max-width: 1200px;
+        max-width: 1300px;
         min-width: 350px;
         min-height: calc(100vh - 80px);
         box-sizing: border-box;
@@ -176,7 +176,7 @@
     .header-titles h1 {
         font-size: 1.6rem;
         font-weight: 700;
-        color: #222246;
+        color: #000000;
         margin: 0 0 10px 0;
     }
 
@@ -224,7 +224,7 @@
 
         .announcements-main h2 {
             text-align: center;
-            color: #262654;
+            color: #000000;
             font-size: 1.7rem;
             font-weight: 800;
             letter-spacing: 1px;
@@ -243,7 +243,7 @@
     }
 
         .announcements-table thead tr {
-            background: #ffa600;
+            background: #800000;
             color: #fff;
         }
 
@@ -270,7 +270,7 @@
         .announcements-table td {
             font-weight: 400;
             font-size: 1.0rem;
-            color: #2a2a3a;
+            color: #000000;
             border-bottom: 1px solid #e7e7ef;
         }
 
@@ -417,7 +417,7 @@
     <a href="#" class="navbar-brand">Production  Visualization</a>
     <div class="navbar-links">
         <a href="@Url.Action("Dashboard", "KOG_SP")">Dashboard</a>
-        <a href="#">Logout</a>
+        <a href="@Url.Action("Login", "Acc")">Logout</a>
     </div>
 </div>
 
@@ -441,18 +441,18 @@
                     <span class="arrow">&#8964;</span>
                 </div>
                 <div class="dropdown-list">
-                    <a href="#"><span>&#8211;</span> All Charts</a>
+                    <a href="@Url.Action("All_Charts", "KOG_SP")"><span>&#8211;</span> All Charts</a>
                     <a href="@Url.Action("Output", "KOG_SP")"><span>&#8211;</span> OutPut</a>
-                    <a href="#"><span>&#8211;</span> NRFT</a>
+                    <a href="@Url.Action("Attendance", "KOG_SP")"><span>&#8211;</span> Attendance</a>
                     <a href="@Url.Action("Birthday", "KOG_SP")"><span>&#8211;</span> Birthday</a>
-                    <a href="#"><span>&#8211;</span> Delivery Performance</a>
-                    <a href="#"><span>&#8211;</span> 5S Achievement</a>
-                    <a href="#"><span>&#8211;</span> Kaizen Plan</a>
+                    <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Delivery Performance</a>
+                    <a href="@Url.Action("five_s", "KOG_SP")"><span>&#8211;</span> 5S Achievement</a>
+                    <a href="@Url.Action("SP_OGQC", "KOG_SP")"><span>&#8211;</span> OGQC</a>
                     <a href=@Url.Action("MonthlyPP", "KOG_SP")><span>&#8211;</span> Monthly PP</a>
                     <a href="@Url.Action("Announcements", "KOG_SP")"><span>&#8211;</span> Announcements</a>
                     <a href="@Url.Action("", "KOG_SP")"><span>&#8211;</span> Rework Cost</a>
                     <a href="@Url.Action("Safety_Summary", "KOG_SP")"><span>&#8211;</span> Safety Summary</a>
-                    <a href="#"><span>&#8211;</span> Machine Breakdown</a>
+                    <a href="@Url.Action("LayOut", "KOG_SP")"><span>&#8211;</span> LayOut</a>
                 </div>
         </li>
     </ul>
@@ -485,18 +485,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @{
+                    var today = DateTime.Today;
+                }
+                @foreach (var item in Model.Where(a => a.Start_Date <= today && a.End_Date >= today))
                 {
                     <tr>
                         <td>@item.Date.ToString("dd, MMMM, yyyy")</td>
-                        <td>@item.Announcement</td>
+                        <td>@item.Announcement_name</td>
                         <td>@item.Publisher</td>
                         <td>@item.Publisher_Post</td>
                         <td>@item.Type</td>
                         <td><a href="#" class="edit-link" data-id="@item.Id">Edit</a></td>
                         <td>
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                <input class="form-check-input display-switch" type="checkbox" data-id="@item.Id" id="display-switch-@item.Id">
                             </div>
                         </td>
                     </tr>
@@ -504,6 +507,8 @@
             </tbody>
         </table>
     </div>
+
+
 </div>
 <!-- Edit Announcement Modal -->
 <div class="modal fade" id="editAnnouncementModal" tabindex="-1" aria-labelledby="editAnnouncementModalLabel" aria-hidden="true">
@@ -526,7 +531,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editAnnouncement">Announcement</label>
-                        <input type="text" class="form-control" id="editAnnouncement" name="Announcement" required>
+                        <input type="text" class="form-control" id="editAnnouncement" name="Announcement_name" required>
                     </div>
                     <div class="form-group">
                         <label for="editPublisher">Publisher</label>
@@ -534,11 +539,19 @@
                     </div>
                     <div class="form-group">
                         <label for="editPublisherPost">Publisher Post</label>
-                        <input type="text" class="form-control" id="editPublisherPost" name="Piblisher_Post" required>
+                        <input type="text" class="form-control" id="editPublisherPost" name="Publisher_Post" required>
                     </div>
                     <div class="form-group">
                         <label for="editType">Type</label>
                         <input type="text" class="form-control" id="editType" name="Type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editStartDate">Start Date</label>
+                        <input type="date" class="form-control" id="editStartDate" name="Start_Date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEndDate">End Date</label>
+                        <input type="date" class="form-control" id="editEndDate" name="End_Date" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -579,96 +592,128 @@
         sidebarVisible = !sidebarVisible;
     });
 
-    document.querySelectorAll('#statusTable tbody tr').forEach(function (row) {
-        const statusCell = row.querySelector('.display-status');
-        const switchOn = row.querySelector('.switch-on');
-        const switchOff = row.querySelector('.switch-off');
+    //document.querySelectorAll('#statusTable tbody tr').forEach(function (row) {
+    //    const statusCell = row.querySelector('.display-status');
+    //    const switchOn = row.querySelector('.switch-on');
+    //    const switchOff = row.querySelector('.switch-off');
 
-        switchOn.addEventListener('click', function () {
-            statusCell.textContent = 'on';
-            statusCell.style.color = '#1561e7';
-            statusCell.style.fontWeight = 'bold';
-        });
+    //    switchOn.addEventListener('click', function () {
+    //        statusCell.textContent = 'on';
+    //        statusCell.style.color = '#1561e7';
+    //        statusCell.style.fontWeight = 'bold';
+    //    });
 
-        switchOff.addEventListener('click', function () {
-            statusCell.textContent = 'off';
-            statusCell.style.color = '#e01b1b';
-            statusCell.style.fontWeight = 'bold';
-        });
-    });
+    //    switchOff.addEventListener('click', function () {
+    //        statusCell.textContent = 'off';
+    //        statusCell.style.color = '#e01b1b';
+    //        statusCell.style.fontWeight = 'bold';
+    //    });
+    //});
+
     $(function () {
-
-        // Edit announcement: open modal & populate
-        $(document).on('click', '.edit-link', function (e) {
-            e.preventDefault();
+        // Restore checkbox state from localStorage
+        $('.display-switch').each(function () {
             var id = $(this).data('id');
-            $.get('@Url.Action("Get_Announcement", "SP")', { id: id }, function (data) {
-                if (data) {
-                    $('#editId').val(data.Id);
-                    $('#editDate').val(data.Date);
-                    $('#editAnnouncement').val(data.Announcement);
-                    $('#editPublisher').val(data.Publisher);
-                    $('#editPublisherPost').val(data.Piblisher_Post);
-                    $('#editType').val(data.Type);
-                    $('#editAnnouncementModal').modal('show');
-                }
-            });
+            var show = localStorage.getItem('showPublisher_' + id);
+            $(this).prop('checked', show === 'true');
         });
 
-        $('#addAnnForm').submit(function (e) {
-            e.preventDefault();
-            var form = $(this);
-            $.ajax({
-                url: form.attr('action'),
-                type: 'POST',
-                data: form.serialize(),
-                success: function (resp) {
-                    if (resp.success || resp.indexOf("announcement saved") !== -1) {
-                        $('#addAnnMsg').html('<span style="color:green;">Saved!</span>');
-                        // Reload the table via AJAX
-                        $('#announcementTableContainer').load('/SP/Partial_AnnouncementsTable');
-                        form[0].reset();
-                    } else {
-                        $('#addAnnMsg').html('<span style="color:red;">Error!</span>');
-                    }
-                },
-                error: function (xhr) {
-                    $('#addAnnMsg').html('<span style="color:red;">An error occurred.</span>');
-                }
-            });
+        // Save state to localStorage when toggled
+        $('.display-switch').on('change', function () {
+            var id = $(this).data('id');
+            var checked = $(this).is(':checked');
+            localStorage.setItem('showPublisher_' + id, checked ? 'true' : 'false');
         });
     });
-    function refreshAnnouncementsTable() {
-    $('#announcementTableContainer').load('@Url.Action("Partial_AnnouncementsTable", "SP")');
-}
 
-$(function () {
-   function refreshAnnouncementsTable() {
-    $('#announcementTableContainer').load('@Url.Action("Partial_AnnouncementsTable", "SP")');
-}
 
-    // Delegate delete click to dynamically loaded forms
-    $(document).on('submit', '.delete-announcement-form', function (e) {
+  $(function () {
+    // Open modal and load announcement data
+    $(document).on('click', '.edit-link', function (e) {
         e.preventDefault();
-        if (!confirm('Are you sure you want to delete this announcement?')) return;
-        var $form = $(this);
+        var id = $(this).data('id');
+        $.get('@Url.Action("Get_Announcement", "KOG_SP")', { id: id }, function (data) {
+            if (data) {
+                $('#editId').val(data.Id);
+                $('#editDate').val(data.Date);
+                $('#editAnnouncement').val(data.Announcement_name);
+                $('#editPublisher').val(data.Publisher);
+                $('#editPublisherPost').val(data.Publisher_Post);
+                $('#editType').val(data.Type);
+                $('#editStartDate').val(data.Start_Date); 
+                $('#editEndDate').val(data.End_Date);     
+                $('#editAnnouncementModal').modal('show');
+            }
+        });
+    });
+
+    // Submit edited announcement
+    $('#editAnnouncementForm').submit(function (e) {
+        e.preventDefault();
+        var formData = {
+            Id: $('#editId').val(),
+            Date: $('#editDate').val(),
+            Announcement_name: $('#editAnnouncement').val(),
+            Publisher: $('#editPublisher').val(),
+            Publisher_Post: $('#editPublisherPost').val(),
+            Type: $('#editType').val(),
+            Start_Date: $('#editStartDate').val(), 
+            End_Date: $('#editEndDate').val()      
+        };
 
         $.ajax({
-            url: '@Url.Action("Delete_Announcement", "SP")',
+            url: '@Url.Action("Update_Announcement", "KOG_SP")',
             type: 'POST',
-            data: $form.serialize() + '&id=' + $form.data('id'),
+            data: formData,
+            headers: { 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() },
             success: function (resp) {
                 if (resp.success) {
-                    refreshAnnouncementsTable();
+                    $('#editAnnouncementModal').modal('hide');
+                    location.reload();
                 } else {
-                    alert(resp.error || 'Delete failed.');
+                    alert('Update failed: ' + (resp.error || 'Unknown error'));
                 }
             },
             error: function () {
-                alert('Delete failed.');
+                alert('Update failed due to server error.');
             }
         });
     });
 });
- 
+    @*function refreshAnnouncementsTable() {
+    $('#announcementTableContainer').load('@Url.Action("Partial_AnnouncementsTable", "SP")');
+}*@
+    // Admin Announcements Table: Toggle Display Button Logic
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.display-toggle-btn').forEach(function (btn) {
+            // Initialize button state from localStorage
+            var annId = btn.getAttribute('data-announcement-id');
+            var localKey = 'showPublisher_' + annId;
+            var isEnabled = localStorage.getItem(localKey);
+            if (isEnabled === 'false') {
+                btn.setAttribute('data-visible', "false");
+                btn.textContent = "Display OFF";
+            } else {
+                btn.setAttribute('data-visible', "true");
+                btn.textContent = "Display ON";
+            }
+
+            btn.addEventListener('click', function () {
+                var visible = btn.getAttribute('data-visible') === "true";
+                if (visible) {
+                    // Set localStorage to hide
+                    localStorage.setItem(localKey, "false");
+                    btn.setAttribute('data-visible', "false");
+                    btn.textContent = "Display OFF";
+                } else {
+                    // Set localStorage to show
+                    localStorage.setItem(localKey, "true");
+                    btn.setAttribute('data-visible', "true");
+                    btn.textContent = "Display ON";
+                }
+            });
+        });
+    });
+
 </script>

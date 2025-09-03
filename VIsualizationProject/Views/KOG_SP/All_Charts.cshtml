@@ -1,239 +1,1005 @@
-﻿@{
+﻿@using System
+@using System.Collections.Generic
+@model IEnumerable<VIsualizationProject.Models.Announcement>
+@{
+    Layout = null;
     ViewBag.Title = "All Charts";
-    var safetyDates = ViewBag.SafetyDates as List<string>; // dates with injuries
+    var safetyDates = ViewBag.SafetyDates as List<string>;
     var today = DateTime.Today;
     int year = today.Year;
     int month = today.Month;
     int daysInMonth = DateTime.DaysInMonth(year, month);
     var monthName = today.ToString("MMMM");
+    var posts = Model?.Where(a => a.Start_Date <= today && a.End_Date >= today)
+                  .OrderByDescending(a => a.Date)
+                  .ToList() ?? new List<VIsualizationProject.Models.Announcement>();
+    var birthdaysToday = ViewBag.BirthdaysToday as List<VIsualizationProject.Models.Birthdays>;
+    var rotateDelay = 5000;
+    int slideIdx = 2;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <style>
-    .top-navbar {
-        width: 100%;
-        height: 64px;
-        background: #222246;
-        color: #fff;
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: url("https://img.freepik.com/free-vector/red-wavy-with-halftone-background_1409-1274.jpg?semt=ais_hybrid&w=740&q=80") no-repeat center center fixed;
+        background-size: cover;
+    }
+    /*Safety Summary Styles*/
+    .screen-slide {
+        width: 100vw;
+        min-height: 100vh;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        position: fixed;
+        justify-content: center;
+        position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        z-index: 1050;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-        padding: 0 32px;
+        z-index: 1;
+        transition: opacity 0.7s;
+        opacity: 0;
+        pointer-events: none;
+        background: transparent;
     }
 
-
-        .top-navbar .navbar-brand {
-            flex: 1;
-            text-align: center;
-            font-size: 1.65rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: #fff;
+        .screen-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 10;
         }
 
-        .top-navbar .navbar-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-            .top-navbar .navbar-links a {
-                color: #fff;
-                text-decoration: none;
-                font-size: 1.1rem;
-                font-weight: 500;
-                transition: color 0.2s;
-            }
-
-                .top-navbar .navbar-links a:hover {
-                    color: #ffd700;
-                }
+    .container, .row {
+        min-height: 100vh;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
 
     .calendar-container {
-        margin: 40px auto;
-        margin-top: 2.5cm;
-        max-width: 480px;
-        background: #fff;
-        border-radius: 16px;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.09);
-        padding: 36px 28px;
+        max-width: 600px;
+        width: 98vw;
+        margin: 28px auto 0 auto;
+        border-radius: 26px;
+        background: #ffff;
+        box-shadow: 0 6px 32px 0 rgba(0,0,0,0.09);
+        padding: 38px 28px 28px 28px;
+        position: relative;
+        background-image: #f8f9fa;
+        background-size: cover;
+        background-repeat: no-repeat;
+        box-sizing: border-box;
+        transition: max-width 0.2s, padding 0.2s;
     }
 
     .calendar-header {
         text-align: center;
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 24px;
-        color: #222246;
-        letter-spacing: 1px;
+        font-size: 2.45rem;
+        font-weight: 800;
+        color: #991313;
+        margin-bottom: 16px;
+        letter-spacing: 1.7px;
+        word-break: break-word;
     }
 
     .calendar-nav {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        margin-bottom: 14px;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+        gap: 8px;
     }
 
         .calendar-nav button {
-            background: #222246;
+            background: #991313;
             color: #fff;
             border: none;
-            border-radius: 8px;
-            padding: 6px 18px;
-            font-size: 1rem;
+            border-radius: 10px;
+            font-size: 1.18rem;
+            font-weight: 700;
+            padding: 10px 28px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background 0.18s;
+            box-shadow: 0 2px 8px 0 rgba(153, 19, 19, 0.10);
+            margin: 0 8px;
+            white-space: nowrap;
         }
 
             .calendar-nav button:hover {
-                background: #1a1a35;
+                background: #b71c1c;
             }
+
+    #calendarMonthLabel {
+        font-size: 1.18rem;
+        font-weight: 700;
+        letter-spacing: 0.7px;
+        color: #232323;
+        text-align: center;
+        flex: 1;
+        min-width: 140px;
+        margin: 0 8px;
+    }
+
+    .safety-legend {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+        justify-content: center;
+        margin: 21px 0 17px 0;
+        flex-wrap: wrap;
+    }
+
+        .safety-legend span {
+            font-size: 1.07rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .safety-legend .legend-box {
+            display: inline-block;
+            width: 28px;
+            height: 15px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+        }
+
+        .safety-legend .legend-red {
+            background: #e74c3c;
+        }
+
+        .safety-legend .legend-green {
+            background: #27ae60;
+        }
 
     .calendar-grid {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 7px;
-    }
-
-    .calendar-day, .calendar-cell {
-        height: 40px;
-        width: 40px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
+        grid-template-columns: repeat(7, 56px);
+        grid-auto-rows: 56px;
+        gap: 18px;
         justify-content: center;
-        font-weight: 500;
-        font-size: 1.05rem;
+        margin-top: 8px;
+        margin-bottom: 0;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: auto;
+        transition: grid-template-columns 0.2s, gap 0.2s;
     }
 
     .calendar-day {
-        background: #e8edf2;
-        color: #222246;
+        text-align: center;
+        line-height: 56px;
+        font-weight: 800;
+        font-size: 1.22rem;
+        color: #404050;
+        background: #f1f3f6;
+        border-radius: 12px;
+        margin-bottom: 2px;
+        letter-spacing: 0.8px;
+        box-shadow: none;
+        border: none;
+        word-break: break-word;
+    }
+
+    .calendar-cell {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1.22rem;
+        font-weight: 700;
+        border-radius: 14px;
+        transition: box-shadow 0.20s, border 0.20s, font-size 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        cursor: pointer;
+        background: #27ae60;
+        color: #fff;
+        word-break: break-word;
+    }
+
+        .calendar-cell.red {
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        .calendar-cell.green {
+            background: #27ae60;
+            color: #fff;
+        }
+
+        .calendar-cell.today {
+            border: 3px solid #232f3e;
+            box-shadow: 0 2px 8px 0 rgba(60,60,60,0.14);
+            z-index: 2;
+        }
+
+        .calendar-cell.empty {
+            background: none !important;
+            box-shadow: none !important;
+            border: none !important;
+            cursor: default;
+            pointer-events: none;
+        }
+
+    @@media (max-width:900px) {
+        .calendar-container {
+            max-width: 99vw;
+            padding: 4vw 1vw 7vw 1vw;
+        }
+
+        .calendar-grid {
+            grid-template-columns: repeat(7, minmax(34px,1fr));
+            gap: 9px;
+        }
+
+        .calendar-day, .calendar-cell {
+            font-size: 1rem;
+            min-width: 28px;
+            min-height: 28px;
+            line-height: 28px;
+            padding: 0;
+        }
+
+        .calendar-header {
+            font-size: 1.7rem;
+        }
+    }
+
+    @@media (max-width:600px) {
+        .calendar-container {
+            padding: 2vw 1vw 3vw 1vw;
+        }
+
+        .calendar-grid {
+            grid-template-columns: repeat(7, minmax(22px,1fr));
+            gap: 4px;
+        }
+
+        .calendar-day, .calendar-cell {
+            font-size: 0.92rem;
+            min-width: 18px;
+            min-height: 18px;
+            line-height: 22px;
+            padding: 0;
+            border-radius: 7px;
+        }
+
+        .calendar-header {
+            font-size: 1.02rem;
+        }
+
+        .calendar-nav button {
+            font-size: 0.95rem;
+            padding: 6px 10px;
+        }
+
+        #calendarMonthLabel {
+            font-size: 0.95rem;
+        }
+
+        .safety-legend {
+            gap: 8px;
+        }
+
+            .safety-legend span {
+                font-size: 0.89rem;
+            }
+
+            .safety-legend .legend-box {
+                width: 15px;
+                height: 10px;
+            }
+    }
+
+    @@media (max-width:400px) {
+        .calendar-container {
+            padding: 1vw 0.5vw 2vw 0.5vw;
+        }
+
+        .calendar-grid {
+            grid-template-columns: repeat(7, minmax(14px,1fr));
+            gap: 2px;
+        }
+
+        .calendar-day, .calendar-cell {
+            font-size: 0.77rem;
+        }
+    }
+
+    /* Announcements Styles*/
+    .announcements-grid {
+        max-width: 900px;
+        width: 97vw;
+        background: #fff;
+        border-radius: 28px;
+        box-shadow: 0 6px 32px 0 rgba(0,0,0,0.09);
+        padding: 40px 0 40px 0;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .announcements-header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e8edf2;
+        width: 92%;
+    }
+
+        .announcements-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #800000;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+    .announcements-grid-container {
+        width: 93%;
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .announcement-card {
+        background: #fff;
+        border: 2px solid #800000;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
+        padding: 28px 32px 22px 32px;
+        width: 100%;
+        max-width: 700px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin: 0 auto;
+    }
+
+    .announcement-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 12px;
+    }
+
+    .announcement-icon {
+        font-size: 2rem;
+        background: #800000;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .announcement-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #000000;
+        letter-spacing: 0.5px;
+    }
+
+    .announcement-content {
+        font-size: 1.5rem;
+        color: #000000;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border-left: 4px solid #222246;
+    }
+
+    .announcement-footer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 0.9rem;
+        color: #666;
+        padding-top: 15px;
+        border-top: 1px solid #e8edf2;
+    }
+
+    .announcement-date {
         font-weight: 600;
-        font-size: 1.1rem;
+        color: #222246;
+    }
+
+    .no-announcements {
+        text-align: center;
+        padding: 40px 5vw;
+        color: #666;
+    }
+
+    .no-announcements-icon {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+
+    .no-announcements h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #000000;
+        margin-bottom: 10px;
+    }
+
+    .no-announcements p {
+        font-size: 1.05rem;
+        color: #888;
+    }
+
+    @@media (max-width:900px) {
+        .calendar-container {
+            max-width: 99vw;
+            padding: 4vw 1vw 7vw 1vw;
+        }
+
+        .announcements-grid {
+            padding: 18px 0 24px 0;
+        }
+
+        .announcement-card {
+            padding: 12px 4px 14px 4px;
+        }
+    }
+
+    @@media (max-width:600px) {
+        .calendar-container {
+            padding: 2vw 1vw 3vw 1vw;
+        }
+
+        .calendar-header, .announcements-header h2 {
+            font-size: 1.2rem;
+        }
+
+        .announcement-title {
+            font-size: 1rem;
+        }
+
+        .announcement-content {
+            font-size: 1rem;
+            padding: 8px 10px;
+        }
+
+        .announcement-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 1.4rem;
+        }
+    }
+
+    @@media (max-width:400px) {
+        .calendar-container {
+            padding: 1vw 0.5vw 2vw 0.5vw;
+        }
+
+        .announcement-card {
+            padding: 6px 2px 8px 2px;
+        }
+    }
+
+
+    /* Birthday Styles */
+    .birthday-post-box {
+        background: #fff;
+        border-radius: 40px;
+        box-shadow: 0 12px 50px rgba(34,34,70,.2);
+        padding: 40px 10vw 40px 10vw;
+        max-width: 1100px;
+        width: 95vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .birthday-happy-title {
+        font-size: 3rem;
+        font-weight: 900;
+        letter-spacing: 2px;
+        text-align: center;
+        background: #800000;
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: rainbow-text 2.5s linear infinite alternate;
+        margin-bottom: 28px;
+        text-shadow: 2px 5px 10px #d9d9d980;
+        padding: 0 10px;
+        line-height: 1.1;
+    }
+
+    .birthday-post-content {
+        font-size: 1.5rem;
+        color: #222246;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px #22224613;
+        margin-bottom: 20px;
+        padding: 25px 10vw;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        z-index: 3;
+    }
+
+    .birthday-grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 18px;
+        margin: 20px 0;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .birthday-card {
+        background-image: url("https://static.vecteezy.com/system/resources/thumbnails/056/052/993/small_2x/streamers-blue-birthday-background-photo.jpg");
+        background-position: center;
+        background-size: cover;
+        border: 2px solid #ffe066;
+        border-radius: 20px;
+        padding: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #800000;
+        min-width: 300px;
+        min-height: 300px;
+    }
+
+    .birthday-photo-frame {
+        width: 150px;
+        height: 150px;
+        border-radius: 20px;
+        background: #f8f8f8;
+        border: 3px solid #ffe066;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        margin-bottom: 12px;
+    }
+
+        .birthday-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+    .birthday-card:hover .birthday-photo-frame img {
+        transform: scale(1.1);
+    }
+
+    .birthday-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .birthday-name {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: #f8f9fa;
+    }
+
+    .birthday-employee {
+        font-size: 1.5rem;
+        color: #1561e7;
+        margin-bottom: 4px;
+    }
+
+    .birthday-date, .birthday-day {
+        font-size: 0.95rem;
+        color: #222246;
+    }
+
+    /*Layout Styles*/
+    .layout-post-box {
+        background: #fff;
+        border-radius: 40px;
+        box-shadow: 0 12px 50px rgba(34,34,70,.2);
+        padding: 40px 10vw 40px 10vw;
+        min-width: 0;
+        max-width: 1200px;
+        width: 95vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .layout-title {
+        font-size: 2.3rem;
+        font-weight: 900;
+        letter-spacing: 2px;
+        text-align: center;
+        background: linear-gradient(90deg, #800000, #800000, #800000);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: rainbow-text 2.5s linear infinite alternate;
+        margin-bottom: 24px;
+        text-shadow: 2px 5px 10px #d9d9d980;
+        padding: 0 10px;
+        line-height: 1.1;
+    }
+
+    .layout-info {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .layout-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        background: #f8f9fa;
+        padding: 10px 18px;
+        border-radius: 15px;
+        border: 2px solid #e8edf2;
+        min-width: 110px;
+    }
+
+    .layout-label {
+        font-size: 0.9rem;
+        color: #666;
+        font-weight: 600;
+        text-transform: uppercase;
         letter-spacing: 1px;
     }
 
-    .calendar-cell.red {
-        background: #e74c3c;
-        color: #fff;
+    .layout-value {
+        font-size: 1rem;
+        color: #222246;
+        font-weight: 700;
     }
 
-    .calendar-cell.green {
-        background: #27ae60;
-        color: #fff;
+    .layout-image-container {
+        max-width: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        border: 3px solid #e8edf2;
     }
 
-    .calendar-cell.today {
-        border: 2px solid #222246;
-        box-shadow: 0 0 8px #22224644;
+    .layout-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
     }
 
-    .calendar-cell.empty {
-        background: transparent;
-        border: none;
-        box-shadow: none;
+        .layout-image:hover {
+            transform: scale(1.02);
+        }
+
+    .layout-no-data {
+        text-align: center;
+        padding: 40px 2vw;
+        color: #666;
+    }
+
+    .layout-no-data-icon {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+
+    .layout-no-data h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #222246;
+        margin-bottom: 10px;
+    }
+
+    .layout-no-data p {
+        font-size: 1.05rem;
+        color: #888;
+    }
+
+    #corner-logo {
+        position: fixed;
+        top: 24px;
+        left: 30px;
+        width: 90px; /* Adjust size as needed */
+        height: auto;
+        z-index: 10000;
+        opacity: 0.9;
+        transition: opacity 0.2s;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+        background: #fff;
+        border-radius: 12px;
+        padding: 7px;
+    }
+
+        #corner-logo:hover {
+            opacity: 1;
+        }
+
+    @@media (max-width: 600px) {
+        #corner-logo {
+            width: 48px;
+            top: 8px;
+            right: 8px;
+            padding: 3px;
+        }
     }
 </style>
 
-<div class="top-navbar">
-    <a href="#" class="navbar-brand">Production  Visualization</a>
-    <div class="navbar-links">
-        <a href="@Url.Action("Home", "SP")">Home</a>
-        <a href="#">Logout</a>
+<div class="container">
+    <div class="row">
+        @*Safety summary Slide *@
+        <div id="safety-calendar" class="screen-slide active">
+            <div class="calendar-container">
+                <div class="calendar-header">Safety Calendar</div>
+                <div class="calendar-nav">
+                    <button onclick="changeMonth(-1)">&#8592; Prev</button>
+                    <span id="calendarMonthLabel">@monthName @year</span>
+                    <button onclick="changeMonth(1)">Next &#8594;</button>
+                </div>
+                <div class="safety-legend">
+                    <span>
+                        <span class="legend-box legend-red"></span>
+                        <span style="font-size:0.9rem;color:#5b5b5b;font-weight:600;">Incident Day</span>
+                    </span>
+                    <span>
+                        <span class="legend-box legend-green"></span>
+                        <span style="font-size:0.9rem;color:#5b5b5b;font-weight:600;">Safe Day</span>
+                    </span>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <div class="calendar-day">Sun</div>
+                    <div class="calendar-day">Mon</div>
+                    <div class="calendar-day">Tue</div>
+                    <div class="calendar-day">Wed</div>
+                    <div class="calendar-day">Thu</div>
+                    <div class="calendar-day">Fri</div>
+                    <div class="calendar-day">Sat</div>
+                    @{
+                        int firstDay = (int)(new DateTime(year, month, 1).DayOfWeek);
+                        for (int i = 0; i < firstDay; i++)
+                        {
+                            <div class="calendar-cell empty"></div>
+                        }
+                        for (int day = 1; day <= daysInMonth; day++)
+                        {
+                            var dateStr = new DateTime(year, month, day).ToString("yyyy-MM-dd");
+                            var colorClass = safetyDates != null && safetyDates.Contains(dateStr) ? "red" : "green";
+                            var isToday = (year == DateTime.Today.Year && month == DateTime.Today.Month && day == DateTime.Today.Day) ? "today" : "";
+                            <div class="calendar-cell @colorClass @isToday">@day</div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- Announcements Slide -->
+        <div id="announcements-container" class="screen-slide">
+            <div class="announcements-grid">
+                <div class="announcements-header">
+                    <h2>All Announcements</h2>
+                </div>
+                @if (posts != null && posts.Any())
+                {
+                    <div class="announcements-grid-container">
+                        @foreach (var post in posts)
+                        {
+                            <div class="announcement-card" id="announcement-@post.Id" data-announcement-id="@post.Id">
+                                <div class="announcement-header">
+                                    <div class="announcement-icon">📢</div>
+                                    <div class="announcement-title">Announcement </div>
+                                </div>
+                                <div class="announcement-content">@post.Publisher_Post</div>
+                                <div class="announcement-footer">
+                                    <span class="announcement-date">@post.Date.ToString("MMM dd, yyyy")</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="no-announcements">
+                        <div class="no-announcements-icon">📭</div>
+                        <h3>No Active Announcements</h3>
+                        <p>There are currently no active announcements to display.</p>
+                    </div>
+                }
+            </div>
+        </div>
+        @*Birthday Slide  *@
+        <div id="birthday-slide" class="screen-slide">
+            <div class="birthday-post-box">
+                <div class="birthday-happy-title">HAPPY<br>BIRTHDAY</div>
+                @if (birthdaysToday != null && birthdaysToday.Any())
+                {
+                    <div class="birthday-grid-container">
+                        @foreach (var b in birthdaysToday)
+                        {
+                            <div class="birthday-card">
+                                <div class="birthday-photo-frame">
+                                    @if (b.Photo != null)
+                                    {
+                                        <img src="@Url.Action("GetBirthdayPhoto", "KOG_SP", new { id = b.Id })" alt="Birthday Photo" />
+                                    }
+                                    else
+                                    {
+                                        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="No Photo" />
+                                    }
+                                </div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Wishing you a Happy birthday @b.Name</div>
+                                    @*<div class="birthday-employee">@b.Employee_Number</div>*@
+                                    @*<div class="birthday-date">@b.Date.ToString("dd MMMM, yyyy")</div>*@
+                                    <div class="birthday-wish" style="font-size: 1.3rem; color: #FFFFFF; font-weight: 400; margin: 10px 0 8px 0; ">
+                                        May your special day be filled with good Health and happiness<br />
+                                        Have a wonderful year ahead!
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="birthday-post-content">No Birthdays Today!</div>
+                }
+            </div>
+        </div>
+        @*Layout Slide *@
+        <div id="layout-slide" class="screen-slide">
+            <div class="layout-post-box">
+                <div class="layout-title">PRODUCTION<br>LAYOUT</div>
+                @if (ViewBag.LatestLayout != null)
+                {
+                    <div class="layout-info">
+                        <div class="layout-details">
+                            <span class="layout-label">Production Line:</span>
+                            <span class="layout-value">@ViewBag.LatestLayout.Production_Line</span>
+                        </div>
+                        <div class="layout-details">
+                            <span class="layout-label">Location:</span>
+                            <span class="layout-value">@ViewBag.LatestLayout.Location</span>
+                        </div>
+                        <div class="layout-details">
+                            <span class="layout-label">Date:</span>
+                            <span class="layout-value">@ViewBag.LatestLayout.Date.ToString("dd MMMM, yyyy")</span>
+                        </div>
+                    </div>
+                    <div class="layout-image-container">
+                        <img src="@Url.Action("GetLayoutImage", "KOG_SP", new { id = ViewBag.LatestLayout.Id })"
+                             alt="Production Layout"
+                             class="layout-image" />
+                    </div>
+                }
+                else
+                {
+                    <div class="layout-no-data">
+                        <div class="layout-no-data-icon">🏭</div>
+                        <h3>No Layout Available</h3>
+                        <p>No production layout has been uploaded for the current production line and location.</p>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
-<div class="calendar-container">
-    <div class="calendar-header">Safety Calendar</div>
-    <div class="calendar-nav">
-        <button onclick="changeMonth(-1)">&#8592; Prev</button>
-        <span id="calendarMonthLabel" style="font-weight:700;font-size:1.2rem;">@monthName @year</span>
-        <button onclick="changeMonth(1)">Next &#8594;</button>
-    </div>
-    <div class="calendar-grid" id="calendarGrid">
-        <div class="calendar-day">Sun</div>
-        <div class="calendar-day">Mon</div>
-        <div class="calendar-day">Tue</div>
-        <div class="calendar-day">Wed</div>
-        <div class="calendar-day">Thu</div>
-        <div class="calendar-day">Fri</div>
-        <div class="calendar-day">Sat</div>
-        @{
-            // Initial calendar for current month, will be replaced dynamically by JS below
-            int firstDay = (int)(new DateTime(year, month, 1).DayOfWeek);
-            for (int i = 0; i < firstDay; i++)
-            {
-                <div class="calendar-cell empty"></div>
-            }
-            for (int day = 1; day <= daysInMonth; day++)
-            {
-                var dateStr = new DateTime(year, month, day).ToString("yyyy-MM-dd");
-                var colorClass = safetyDates != null && safetyDates.Contains(dateStr) ? "red" : "green";
-                var isToday = (year == DateTime.Today.Year && month == DateTime.Today.Month && day == DateTime.Today.Day) ? "today" : "";
-                <div class="calendar-cell @colorClass @isToday">@day</div>
-            }
-        }
-    </div>
-</div>
+
+<!-- Logo in the top-right corner -->
+<img src="/Content/images/logo2.png" id="corner-logo" alt="Logo" />
+
 
 <script>
-    // Pass safetyDates from server to JS
     var safetyDates = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(safetyDates ?? new List<string>()));
-
-    // Calendar navigation
     let currentYear = @year;
     let currentMonth = @month;
-
     function changeMonth(delta) {
         currentMonth += delta;
-        if (currentMonth > 12) {
-            currentMonth = 1;
-            currentYear++;
-        }
-        if (currentMonth < 1) {
-            currentMonth = 12;
-            currentYear--;
-        }
+        if (currentMonth > 12) { currentMonth = 1; currentYear++; }
+        if (currentMonth < 1) { currentMonth = 12; currentYear--; }
         renderCalendar(currentYear, currentMonth);
     }
-
     function renderCalendar(year, month) {
         let daysInMonth = new Date(year, month, 0).getDate();
         let firstDay = new Date(year, month-1, 1).getDay();
         let grid = document.getElementById('calendarGrid');
         let html = "";
-        // Day headers
         let days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
         for (let d = 0; d < 7; d++) {
             html += `<div class="calendar-day">${days[d]}</div>`;
         }
-        // Empty cells
         for (let i = 0; i < firstDay; i++) {
             html += `<div class="calendar-cell empty"></div>`;
         }
-        // Date cells
         for (let day = 1; day <= daysInMonth; day++) {
-            let dateObj = new Date(year, month-1, day);
             let dateStr = year + '-' + String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
             let colorClass = safetyDates.includes(dateStr) ? "red" : "green";
             let isToday = (year == new Date().getFullYear() && month == (new Date().getMonth()+1) && day == new Date().getDate()) ? "today" : "";
             html += `<div class="calendar-cell ${colorClass} ${isToday}">${day}</div>`;
         }
         grid.innerHTML = html;
-        // Month name update
         const monthNames = [
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
         ];
         document.getElementById('calendarMonthLabel').innerText = monthNames[month - 1] + " " + year;
     }
-
-    // Initial render for current month
     renderCalendar(currentYear, currentMonth);
+
+     // Slide logic: toggle between safety summary and announcements
+    var slides = [
+        document.getElementById('safety-calendar'),
+        document.getElementById('announcements-container'),
+        document.getElementById('birthday-slide'),
+        document.getElementById('layout-slide'),
+    ];
+    var current = 0;
+    function rotateSlides() {
+        slides.forEach(s => s.classList.remove('active'));
+        slides[current].classList.add('active');
+        current = (current + 1) % slides.length;
+        setTimeout(rotateSlides, @rotateDelay);
+    }
+    // Start slide show when ready
+    document.addEventListener('DOMContentLoaded', function() {
+        rotateSlides();
+    });
+    // All Charts Page: Restore Announcement Display State from localStorage
+
+    function restoreAnnouncementStates() {
+        document.querySelectorAll('.announcement-card').forEach(card => {
+            const announcementId = card.id.replace('announcement-', '');
+            const isEnabled = localStorage.getItem('showPublisher_' + announcementId);
+
+            if (isEnabled === 'false') {
+                // Hide the announcement completely
+                card.style.display = 'none';
+            } else {
+                // Show the announcement
+                card.style.display = 'block';
+            }
+        });
+
+        // Optional: Show "No Announcements" message if all are hidden
+        var anyVisible = Array.from(document.querySelectorAll('.announcement-card'))
+            .some(card => card.style.display !== "none");
+        var noAnnouncementsDiv = document.querySelector('.no-announcements');
+        if (noAnnouncementsDiv) {
+            noAnnouncementsDiv.style.display = anyVisible ? "none" : "";
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        restoreAnnouncementStates();
+    });
 </script>
